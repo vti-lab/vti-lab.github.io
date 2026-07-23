@@ -1,0 +1,3100 @@
+[
+  {
+    "id": "cka-pending-pod",
+    "type": "single",
+    "prompt": "Một Pod luôn ở trạng thái Pending. Lệnh nào nên chạy đầu tiên để tìm nguyên nhân?",
+    "options": [
+      {
+        "id": "a",
+        "label": "kubectl logs pod-name"
+      },
+      {
+        "id": "b",
+        "label": "kubectl describe pod pod-name"
+      },
+      {
+        "id": "c",
+        "label": "kubectl exec -it pod-name -- sh"
+      },
+      {
+        "id": "d",
+        "label": "kubectl delete pod pod-name"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Pod Pending thường chưa được schedule hoặc chưa mount được volume. Phần Events của `kubectl describe` cho biết nguyên nhân trực tiếp.",
+    "tags": [
+      "Troubleshooting 30%",
+      "Pod",
+      "Events"
+    ],
+    "sourceLabel": "Kubernetes: Debug Pods",
+    "sourceUrl": "https://v1-35.docs.kubernetes.io/docs/tasks/debug/debug-application/debug-pods/",
+    "translations": {
+      "en": {
+        "prompt": "A Pod is always in Pending state. Which command should be run first to find the cause?",
+        "options": {
+          "a": "kubectl logs pod-name",
+          "b": "kubectl describe pod pod-name",
+          "c": "kubectl exec -it pod-name -- sh",
+          "d": "kubectl delete pod pod-name"
+        },
+        "explanation": "Pod Pending is often not scheduled or the volume has not been mounted. The Events section of `kubectl describe` shows the direct cause.",
+        "tags": [
+          "Troubleshooting 30%",
+          "Pod",
+          "Events"
+        ],
+        "sourceLabel": "Kubernetes: Debug Pods"
+      },
+      "ja": {
+        "prompt": "Podは常に保留状態になります。原因を見つけるにはどのコマンドを最初に実行する必要がありますか?",
+        "options": {
+          "a": "kubectl logs pod-name",
+          "b": "kubectl describe pod pod-name",
+          "c": "kubectl exec -it pod-name -- sh",
+          "d": "kubectl delete pod pod-name"
+        },
+        "explanation": "Podの保留は、多くの場合、スケジュールされていない、またはボリュームがマウントされていません。 `kubectl describe` のイベント セクションに、直接の原因が示されています。",
+        "tags": [
+          "トラブルシューティング 30%",
+          "Pod",
+          "イベント"
+        ],
+        "sourceLabel": "Kubernetes: Podのデバッグ"
+      }
+    },
+    "audit": {
+      "status": "verified",
+      "auditedAt": "2026-07-19",
+      "officialSources": [
+        "https://v1-35.docs.kubernetes.io/docs/tasks/debug/debug-application/debug-pods/",
+        "https://github.com/cncf/curriculum/blob/master/CKA_Curriculum_v1.35.pdf"
+      ],
+      "note": "Reviewed against the Kubernetes v1.35 documentation and CKA v1.35 curriculum."
+    }
+  },
+  {
+    "id": "cka-crashloop-previous-log",
+    "type": "single",
+    "prompt": "Container đang CrashLoopBackOff và đã restart. Lệnh nào xem log của lần chạy vừa thất bại?",
+    "code": "kubectl logs api-7c9d -c api --previous",
+    "options": [
+      {
+        "id": "a",
+        "label": "Dùng lệnh trên"
+      },
+      {
+        "id": "b",
+        "label": "kubectl get events --watch-only"
+      },
+      {
+        "id": "c",
+        "label": "kubectl attach api-7c9d"
+      },
+      {
+        "id": "d",
+        "label": "kubectl logs api-7c9d --follow --since=0"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "`--previous` lấy log của instance container đã kết thúc trước đó; `-c` chọn đúng container trong Pod nhiều container.",
+    "tags": [
+      "Troubleshooting 30%",
+      "Logs",
+      "CrashLoopBackOff"
+    ],
+    "sourceLabel": "Kubernetes: Debug Running Pods",
+    "sourceUrl": "https://v1-35.docs.kubernetes.io/docs/tasks/debug/debug-application/debug-running-pod/",
+    "translations": {
+      "en": {
+        "prompt": "The container is CrashLoopBackOff and has restarted. Which command views the log of the failed run?",
+        "options": {
+          "a": "Use the command above",
+          "b": "kubectl get events --watch-only",
+          "c": "kubectl attach api-7c9d",
+          "d": "kubectl logs api-7c9d --follow --since=0"
+        },
+        "explanation": "`--previous` retrieves the log of the previously terminated container instance; `-c` selects the correct container in a multi-container Pod.",
+        "tags": [
+          "Troubleshooting 30%",
+          "Logs",
+          "CrashLoopBackOff"
+        ],
+        "sourceLabel": "Kubernetes: Debug Running Pods"
+      },
+      "ja": {
+        "prompt": "コンテナは CrashLoopBackOff になり、再起動されました。失敗した実行のログを表示するコマンドはどれですか?",
+        "options": {
+          "a": "上記のコマンドを使用します",
+          "b": "kubectl get events --watch-only",
+          "c": "kubectl attach api-7c9d",
+          "d": "kubectl logs api-7c9d --follow --since=0"
+        },
+        "explanation": "`--previous` は、以前に終了したコンテナ インスタンスのログを取得します。 `-c` は、複数コンテナの Pod 内の正しいコンテナを選択します。",
+        "tags": [
+          "トラブルシューティング 30%",
+          "ログ",
+          "クラッシュループバックオフ"
+        ],
+        "sourceLabel": "Kubernetes: 実行中のPodをデバッグする"
+      }
+    },
+    "audit": {
+      "status": "verified",
+      "auditedAt": "2026-07-19",
+      "officialSources": [
+        "https://v1-35.docs.kubernetes.io/docs/tasks/debug/debug-application/debug-running-pod/",
+        "https://github.com/cncf/curriculum/blob/master/CKA_Curriculum_v1.35.pdf"
+      ],
+      "note": "Reviewed against the Kubernetes v1.35 documentation and CKA v1.35 curriculum."
+    }
+  },
+  {
+    "id": "cka-node-not-ready",
+    "type": "multiple",
+    "prompt": "Một worker node chuyển sang NotReady. Hai kiểm tra nào giúp khoanh vùng kubelet nhanh nhất?",
+    "options": [
+      {
+        "id": "a",
+        "label": "kubectl describe node worker-1"
+      },
+      {
+        "id": "b",
+        "label": "journalctl -u kubelet (worker-1)"
+      },
+      {
+        "id": "c",
+        "label": "kubectl rollout undo deployment/example"
+      },
+      {
+        "id": "d",
+        "label": "Xóa namespace default"
+      }
+    ],
+    "correctOptionIds": [
+      "a",
+      "b"
+    ],
+    "explanation": "Node conditions và Events cho biết tín hiệu từ control plane; journal của kubelet cho biết lỗi runtime, certificate, cgroup hoặc kết nối API trên node.",
+    "tags": [
+      "Troubleshooting 30%",
+      "Node",
+      "kubelet"
+    ],
+    "sourceLabel": "Kubernetes: Troubleshooting Clusters",
+    "sourceUrl": "https://v1-35.docs.kubernetes.io/docs/tasks/debug/debug-cluster/",
+    "translations": {
+      "en": {
+        "prompt": "A worker node switches to NotReady. Which two tests help localize the kubelet fastest?",
+        "options": {
+          "a": "kubectl describe node worker-1",
+          "b": "journalctl -u kubelet (worker-1)",
+          "c": "kubectl rollout undo deployment/example",
+          "d": "Delete default namespace"
+        },
+        "explanation": "Node conditions and Events indicate signals from the control plane; kubelet journal shows runtime, certificate, cgroup or API connection errors on the node.",
+        "tags": [
+          "Troubleshooting 30%",
+          "Node",
+          "kubelet"
+        ],
+        "sourceLabel": "Kubernetes: Troubleshooting Clusters"
+      },
+      "ja": {
+        "prompt": "ワーカー ノードが NotReady に切り替わります。 kubelet を最速でローカライズするのに役立つ 2 つのテストはどれですか?",
+        "options": {
+          "a": "kubectl describe node worker-1",
+          "b": "journalctl -u kubelet (worker-1)",
+          "c": "kubectl rollout undo deployment/example",
+          "d": "デフォルトのNamespaceを削除する"
+        },
+        "explanation": "ノードの状態とイベントは、コントロール プレーンからの信号を示します。 kubelet ジャーナルには、ノード上のランタイム、証明書、cgroup、または API 接続エラーが表示されます。",
+        "tags": [
+          "トラブルシューティング 30%",
+          "ノード",
+          "kubelet"
+        ],
+        "sourceLabel": "Kubernetes: クラスターのトラブルシューティング"
+      }
+    },
+    "audit": {
+      "status": "verified",
+      "auditedAt": "2026-07-19",
+      "officialSources": [
+        "https://v1-35.docs.kubernetes.io/docs/tasks/debug/debug-cluster/",
+        "https://github.com/cncf/curriculum/blob/master/CKA_Curriculum_v1.35.pdf"
+      ],
+      "note": "Reviewed against the Kubernetes v1.35 documentation and CKA v1.35 curriculum."
+    }
+  },
+  {
+    "id": "cka-static-pod-manifest",
+    "type": "single",
+    "prompt": "Sau khi sửa control plane, kube-apiserver không khởi động. Với cluster kubeadm, vị trí nào nên kiểm tra trước?",
+    "options": [
+      {
+        "id": "a",
+        "label": "/etc/kubernetes/manifests/kube-apiserver.yaml"
+      },
+      {
+        "id": "b",
+        "label": "/var/lib/kube-proxy/config.json"
+      },
+      {
+        "id": "c",
+        "label": "/etc/coredns/Corefile"
+      },
+      {
+        "id": "d",
+        "label": "/opt/kubernetes/deployments.yaml"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "kubeadm triển khai các thành phần control plane dưới dạng static Pod. Kubelet theo dõi manifest trong `/etc/kubernetes/manifests` và tạo lại Pod khi file đổi.",
+    "tags": [
+      "Troubleshooting 30%",
+      "Control Plane",
+      "Static Pod"
+    ],
+    "sourceLabel": "Kubernetes: Static Pods",
+    "sourceUrl": "https://v1-35.docs.kubernetes.io/docs/tasks/configure-pod-container/static-pod/",
+    "translations": {
+      "en": {
+        "prompt": "After repairing the control plane, kube-apiserver does not start. With kubeadm cluster, which location should be checked first?",
+        "options": {
+          "a": "/etc/kubernetes/manifests/kube-apiserver.yaml",
+          "b": "/var/lib/kube-proxy/config.json",
+          "c": "/etc/coredns/Corefile",
+          "d": "/opt/kubernetes/deployments.yaml"
+        },
+        "explanation": "kubeadm triển khai các thành phần control plane dưới dạng static Pod. Kubelet theo dõi manifest trong `/etc/kubernetes/manifests` và tạo lại Pod khi file đổi.",
+        "tags": [
+          "Troubleshooting 30%",
+          "Control Plane",
+          "Static Pod"
+        ],
+        "sourceLabel": "Kubernetes: Static Pods"
+      },
+      "ja": {
+        "prompt": "コントロール プレーンを修復した後、kube-apiserver が起動しません。 kubeadm クラスターでは、最初にどの場所を確認する必要がありますか?",
+        "options": {
+          "a": "/etc/kubernetes/manifests/kube-apiserver.yaml",
+          "b": "/var/lib/kube-proxy/config.json",
+          "c": "/etc/coredns/Corefile",
+          "d": "/opt/kubernetes/deployments.yaml"
+        },
+        "explanation": "kubeadm triển khai các thành phần control plane dưới dạng static Pod. Kubelet theo dõi manifest trong `/etc/kubernetes/manifests` và tạo lại Pod khi file đổi.",
+        "tags": [
+          "トラブルシューティング 30%",
+          "コントロールプレーン",
+          "静的Pod"
+        ],
+        "sourceLabel": "Kubernetes: 静的Pod"
+      }
+    },
+    "audit": {
+      "status": "verified",
+      "auditedAt": "2026-07-19",
+      "officialSources": [
+        "https://v1-35.docs.kubernetes.io/docs/tasks/configure-pod-container/static-pod/",
+        "https://github.com/cncf/curriculum/blob/master/CKA_Curriculum_v1.35.pdf"
+      ],
+      "note": "Reviewed against the Kubernetes v1.35 documentation and CKA v1.35 curriculum."
+    }
+  },
+  {
+    "id": "cka-service-selector",
+    "type": "multiple",
+    "prompt": "Service không route được tới các Pod đang Running. Hai kiểm tra nào hữu ích nhất?",
+    "options": [
+      {
+        "id": "a",
+        "label": "So sánh selector của Service với label của Pod"
+      },
+      {
+        "id": "b",
+        "label": "Kiểm tra port và targetPort của Service"
+      },
+      {
+        "id": "c",
+        "label": "Tăng replica của CoreDNS ngay lập tức"
+      },
+      {
+        "id": "d",
+        "label": "Xóa namespace rồi tạo lại"
+      }
+    ],
+    "correctOptionIds": [
+      "a",
+      "b"
+    ],
+    "explanation": "Selector quyết định backend xuất hiện trong EndpointSlice; port/targetPort quyết định traffic được chuyển tới cổng nào của Pod.",
+    "tags": [
+      "Troubleshooting 30%",
+      "Service",
+      "EndpointSlice"
+    ],
+    "sourceLabel": "Kubernetes: Debug Services",
+    "sourceUrl": "https://v1-35.docs.kubernetes.io/docs/tasks/debug/debug-application/debug-service/",
+    "translations": {
+      "en": {
+        "prompt": "Service cannot route to Pods that are Running. Which two tests are most useful?",
+        "options": {
+          "a": "Compare the Service's selector with the Pod's label",
+          "b": "Check the port and targetPort of the Service",
+          "c": "Increase CoreDNS replicas instantly",
+          "d": "Delete the namespace and then create again"
+        },
+        "explanation": "Selector determines which backend appears in EndpointSlice; port/targetPort decides which port of the Pod the traffic is routed to.",
+        "tags": [
+          "Troubleshooting 30%",
+          "Service",
+          "EndpointSlice"
+        ],
+        "sourceLabel": "Kubernetes: Debug Services"
+      },
+      "ja": {
+        "prompt": "Serviceは実行中のPodにルーティングできません。最も役立つ 2 つのテストはどれですか?",
+        "options": {
+          "a": "ServiceのセレクターとPodのラベルを比較します。",
+          "b": "ServiceのポートとtargetPortを確認する",
+          "c": "CoreDNS レプリカを即座に増やす",
+          "d": "Namespaceを削除してから再度作成します"
+        },
+        "explanation": "セレクターは、EndpointSlice にどのバックエンドが表示されるかを決定します。 port/targetPort は、トラフィックがルーティングされるPodのポートを決定します。",
+        "tags": [
+          "トラブルシューティング 30%",
+          "Service",
+          "エンドポイントスライス"
+        ],
+        "sourceLabel": "Kubernetes: デバッグ Service"
+      }
+    },
+    "audit": {
+      "status": "verified",
+      "auditedAt": "2026-07-19",
+      "officialSources": [
+        "https://v1-35.docs.kubernetes.io/docs/tasks/debug/debug-application/debug-service/",
+        "https://github.com/cncf/curriculum/blob/master/CKA_Curriculum_v1.35.pdf"
+      ],
+      "note": "Reviewed against the Kubernetes v1.35 documentation and CKA v1.35 curriculum."
+    }
+  },
+  {
+    "id": "cka-dns-debug",
+    "type": "multiple",
+    "prompt": "Pod không phân giải được `kubernetes.default`. Hai bước nào phù hợp để kiểm tra DNS trong cluster?",
+    "options": [
+      {
+        "id": "a",
+        "label": "Kiểm tra /etc/resolv.conf bên trong Pod thử nghiệm"
+      },
+      {
+        "id": "b",
+        "label": "Kiểm tra Service và log của CoreDNS trong kube-system"
+      },
+      {
+        "id": "c",
+        "label": "Xóa toàn bộ NetworkPolicy ở mọi namespace"
+      },
+      {
+        "id": "d",
+        "label": "Đổi Service thành LoadBalancer"
+      }
+    ],
+    "correctOptionIds": [
+      "a",
+      "b"
+    ],
+    "explanation": "Cấu hình resolver trong Pod cho biết nameserver/search domain đang dùng; Service, EndpointSlice và log CoreDNS xác nhận đường truy vấn phía cluster.",
+    "tags": [
+      "Troubleshooting 30%",
+      "DNS",
+      "CoreDNS"
+    ],
+    "sourceLabel": "Kubernetes: Debugging DNS Resolution",
+    "sourceUrl": "https://v1-35.docs.kubernetes.io/docs/tasks/administer-cluster/dns-debugging-resolution/",
+    "translations": {
+      "en": {
+        "prompt": "Pod cannot resolve `kubernetes.default`. Which two steps are appropriate to check DNS in the cluster?",
+        "options": {
+          "a": "Check /etc/resolv.conf inside the test Pod",
+          "b": "Check Service and log of CoreDNS in kube-system",
+          "c": "Delete all NetworkPolicy in all namespaces",
+          "d": "Change Service to LoadBalancer"
+        },
+        "explanation": "The resolver configuration in the Pod indicates the nameserver/search domain in use; Service, EndpointSlice, and CoreDNS logs confirm cluster-side query paths.",
+        "tags": [
+          "Troubleshooting 30%",
+          "DNS",
+          "CoreDNS"
+        ],
+        "sourceLabel": "Kubernetes: Debugging DNS Resolution"
+      },
+      "ja": {
+        "prompt": "Podは `kubernetes.default` を解決できません。クラスター内の DNS を確認するのに適切な 2 つの手順はどれですか?",
+        "options": {
+          "a": "テストPod内の /etc/resolv.conf を確認します。",
+          "b": "kube-system の CoreDNS のServiceとログを確認する",
+          "c": "すべてのNamespaceのすべての NetworkPolicy を削除します",
+          "d": "Serviceをロードバランサーに変更"
+        },
+        "explanation": "Pod内のリゾルバー設定は、使用中のネームサーバー/検索ドメインを示します。 Service、EndpointSlice、および CoreDNS ログにより、クラスター側のクエリ パスが確認されます。",
+        "tags": [
+          "トラブルシューティング 30%",
+          "DNS",
+          "CoreDNS"
+        ],
+        "sourceLabel": "Kubernetes: DNS 解決のデバッグ"
+      }
+    },
+    "audit": {
+      "status": "verified",
+      "auditedAt": "2026-07-19",
+      "officialSources": [
+        "https://v1-35.docs.kubernetes.io/docs/tasks/administer-cluster/dns-debugging-resolution/",
+        "https://github.com/cncf/curriculum/blob/master/CKA_Curriculum_v1.35.pdf"
+      ],
+      "note": "Reviewed against the Kubernetes v1.35 documentation and CKA v1.35 curriculum."
+    }
+  },
+  {
+    "id": "cka-kubectl-top",
+    "type": "single",
+    "prompt": "`kubectl top nodes` báo Metrics API not available. Thành phần nào cần kiểm tra trước?",
+    "options": [
+      {
+        "id": "a",
+        "label": "Metrics Server và APIService metrics.k8s.io"
+      },
+      {
+        "id": "b",
+        "label": "IngressClass mặc định"
+      },
+      {
+        "id": "c",
+        "label": "StorageClass mặc định"
+      },
+      {
+        "id": "d",
+        "label": "Helm repository cache"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "`kubectl top` đọc Resource Metrics API. Metrics Server thường cung cấp API này và APIService phải ở trạng thái Available.",
+    "tags": [
+      "Troubleshooting 30%",
+      "Metrics",
+      "APIService"
+    ],
+    "sourceLabel": "Kubernetes: Resource Metrics Pipeline",
+    "sourceUrl": "https://v1-35.docs.kubernetes.io/docs/tasks/debug/debug-cluster/resource-metrics-pipeline/",
+    "translations": {
+      "en": {
+        "prompt": "`kubectl top nodes` reports Metrics API not available. Which components need to be checked first?",
+        "options": {
+          "a": "Metrics Server and APIService metrics.k8s.io",
+          "b": "Default IngressClass",
+          "c": "Default StorageClass",
+          "d": "Helm repository cache"
+        },
+        "explanation": "`kubectl top` reads Resource Metrics API. Metrics Server usually provides this API and APIService must be in Available state.",
+        "tags": [
+          "Troubleshooting 30%",
+          "Metrics",
+          "APIService"
+        ],
+        "sourceLabel": "Kubernetes: Resource Metrics Pipeline"
+      },
+      "ja": {
+        "prompt": "`kubectl top nodes` は、メトリック API が使用できないことを報告します。どのコンポーネントを最初に確認する必要がありますか?",
+        "options": {
+          "a": "メトリックサーバーと APIService metrics.k8s.io",
+          "b": "デフォルトの IngressClass",
+          "c": "デフォルトのストレージクラス",
+          "d": "Helm リポジトリ キャッシュ"
+        },
+        "explanation": "`kubectl top` はリソース メトリック API を読み取ります。通常、Metrics Server はこの API を提供し、APIService が利用可能な状態である必要があります。",
+        "tags": [
+          "トラブルシューティング 30%",
+          "メトリクス",
+          "APIService"
+        ],
+        "sourceLabel": "Kubernetes: リソース メトリック パイプライン"
+      }
+    },
+    "audit": {
+      "status": "verified",
+      "auditedAt": "2026-07-19",
+      "officialSources": [
+        "https://v1-35.docs.kubernetes.io/docs/tasks/debug/debug-cluster/resource-metrics-pipeline/",
+        "https://github.com/cncf/curriculum/blob/master/CKA_Curriculum_v1.35.pdf"
+      ],
+      "note": "Reviewed against the Kubernetes v1.35 documentation and CKA v1.35 curriculum."
+    }
+  },
+  {
+    "id": "cka-image-pull-backoff",
+    "type": "multiple",
+    "prompt": "Pod báo ImagePullBackOff với image private. Hai dữ liệu nào cần xác minh trước?",
+    "options": [
+      {
+        "id": "a",
+        "label": "Tên/tag image trong Pod spec"
+      },
+      {
+        "id": "b",
+        "label": "Events và imagePullSecrets của Pod"
+      },
+      {
+        "id": "c",
+        "label": "Reclaim policy của PV"
+      },
+      {
+        "id": "d",
+        "label": "Số replica của CoreDNS"
+      }
+    ],
+    "correctOptionIds": [
+      "a",
+      "b"
+    ],
+    "explanation": "Sai image/tag hoặc thiếu credential registry là nguyên nhân phổ biến. Events thường ghi rõ lỗi not found, unauthorized hoặc timeout.",
+    "tags": [
+      "Troubleshooting 30%",
+      "Image",
+      "Registry"
+    ],
+    "sourceLabel": "Kubernetes: Troubleshoot Image Pulls",
+    "sourceUrl": "https://v1-35.docs.kubernetes.io/docs/tasks/debug/debug-application/debug-pods/",
+    "translations": {
+      "en": {
+        "prompt": "Pod reports ImagePullBackOff with private image. Which two pieces of data need to be verified first?",
+        "options": {
+          "a": "Image name/tag in Pod spec",
+          "b": "Pod events and imagePullSecrets",
+          "c": "Reclaim PV's policy",
+          "d": "CoreDNS replica number"
+        },
+        "explanation": "Wrong image/tag or missing registry credential are common causes. Events often specify not found, unauthorized or timeout errors.",
+        "tags": [
+          "Troubleshooting 30%",
+          "Image",
+          "Registry"
+        ],
+        "sourceLabel": "Kubernetes: Troubleshoot Image Pulls"
+      },
+      "ja": {
+        "prompt": "Podはプライベート イメージを使用して ImagePullBackOff を報告します。最初に検証する必要がある 2 つのデータはどれですか?",
+        "options": {
+          "a": "Pod仕様のイメージ名/タグ",
+          "b": "PodイベントとimagePullSecrets",
+          "c": "PV のポリシーを取り戻す",
+          "d": "CoreDNS レプリカ番号"
+        },
+        "explanation": "間違ったイメージ/タグ、またはレジストリ資格情報の欠落が一般的な原因です。イベントでは、多くの場合、見つからないエラー、未承認のエラー、またはタイムアウトのエラーが指定されます。",
+        "tags": [
+          "トラブルシューティング 30%",
+          "画像",
+          "レジストリ"
+        ],
+        "sourceLabel": "Kubernetes: イメージ プルのトラブルシューティング"
+      }
+    },
+    "audit": {
+      "status": "verified",
+      "auditedAt": "2026-07-19",
+      "officialSources": [
+        "https://v1-35.docs.kubernetes.io/docs/tasks/debug/debug-application/debug-pods/",
+        "https://github.com/cncf/curriculum/blob/master/CKA_Curriculum_v1.35.pdf"
+      ],
+      "note": "Reviewed against the Kubernetes v1.35 documentation and CKA v1.35 curriculum."
+    }
+  },
+  {
+    "id": "cka-events-order",
+    "type": "single",
+    "prompt": "Lệnh nào liệt kê Events theo thời gian tạo để quan sát chuỗi lỗi gần nhất?",
+    "code": "kubectl get events -A --sort-by=.metadata.creationTimestamp",
+    "options": [
+      {
+        "id": "a",
+        "label": "Lệnh trên là phù hợp"
+      },
+      {
+        "id": "b",
+        "label": "kubectl explain events --recursive"
+      },
+      {
+        "id": "c",
+        "label": "kubectl top events -A"
+      },
+      {
+        "id": "d",
+        "label": "kubectl logs events --all"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "`--sort-by` sắp xếp object theo trường JSONPath. Xem Events theo thời gian giúp nối triệu chứng với thay đổi gần nhất.",
+    "tags": [
+      "Troubleshooting 30%",
+      "Events",
+      "kubectl"
+    ],
+    "sourceLabel": "Kubernetes: Events",
+    "sourceUrl": "https://v1-35.docs.kubernetes.io/docs/reference/kubernetes-api/cluster-resources/event-v1/",
+    "translations": {
+      "en": {
+        "prompt": "Which command lists Events by creation time to observe the most recent error sequence?",
+        "options": {
+          "a": "The above command is appropriate",
+          "b": "kubectl explain events --recursive",
+          "c": "kubectl top events -A",
+          "d": "kubectl logs events --all"
+        },
+        "explanation": "`--sort-by` sorts objects by the JSONPath field. Viewing Events over time helps connect symptoms to the most recent changes.",
+        "tags": [
+          "Troubleshooting 30%",
+          "Events",
+          "kubectl"
+        ],
+        "sourceLabel": "Kubernetes: Events"
+      },
+      "ja": {
+        "prompt": "最新のエラー シーケンスを観察するために作成時間ごとにイベントをリストするコマンドはどれですか?",
+        "options": {
+          "a": "上記のコマンドは適切です",
+          "b": "kubectl explain events --recursive",
+          "c": "kubectl top events -A",
+          "d": "kubectl logs events --all"
+        },
+        "explanation": "`--sort-by` は、JSONPath フィールドによってオブジェクトを並べ替えます。イベントを経時的に表示すると、症状を最新の変更に結び付けるのに役立ちます。",
+        "tags": [
+          "トラブルシューティング 30%",
+          "イベント",
+          "kubectl"
+        ],
+        "sourceLabel": "Kubernetes: イベント"
+      }
+    },
+    "audit": {
+      "status": "verified",
+      "auditedAt": "2026-07-19",
+      "officialSources": [
+        "https://v1-35.docs.kubernetes.io/docs/reference/kubernetes-api/cluster-resources/event-v1/",
+        "https://github.com/cncf/curriculum/blob/master/CKA_Curriculum_v1.35.pdf"
+      ],
+      "note": "Reviewed against the Kubernetes v1.35 documentation and CKA v1.35 curriculum."
+    }
+  },
+  {
+    "id": "cka-probe-behavior",
+    "type": "multiple",
+    "prompt": "Pod vẫn Running nhưng không nhận traffic và restart tăng dần. Hai nhận định nào giúp phân biệt probe?",
+    "options": [
+      {
+        "id": "a",
+        "label": "Readiness probe lỗi sẽ loại Pod khỏi backend Service"
+      },
+      {
+        "id": "b",
+        "label": "Liveness probe lỗi lặp lại có thể khiến kubelet restart container"
+      },
+      {
+        "id": "c",
+        "label": "Readiness probe lỗi luôn xóa Deployment"
+      },
+      {
+        "id": "d",
+        "label": "Liveness probe chỉ ảnh hưởng DNS record"
+      }
+    ],
+    "correctOptionIds": [
+      "a",
+      "b"
+    ],
+    "explanation": "Readiness điều khiển việc Pod có sẵn sàng nhận traffic hay không; liveness xác định container có cần được restart để phục hồi hay không.",
+    "tags": [
+      "Troubleshooting 30%",
+      "Probe",
+      "Restart"
+    ],
+    "sourceLabel": "Kubernetes: Configure Probes",
+    "sourceUrl": "https://v1-35.docs.kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/",
+    "translations": {
+      "en": {
+        "prompt": "Pod is still running but does not receive traffic and restarts gradually. Which two observations help distinguish probes?",
+        "options": {
+          "a": "Readiness probe errors will remove the Pod from the backend Service",
+          "b": "Liveness probe recurring errors can cause kubelet to restart the container",
+          "c": "Readiness probe error always deletes Deployment",
+          "d": "Liveness probe only affects DNS records"
+        },
+        "explanation": "Readiness controls whether the Pod is ready to receive traffic or not; liveness determines whether the container needs to be restarted to recover.",
+        "tags": [
+          "Troubleshooting 30%",
+          "Probe",
+          "Restart"
+        ],
+        "sourceLabel": "Kubernetes: Configure Probes"
+      },
+      "ja": {
+        "prompt": "Podはまだ実行中ですが、トラフィックを受信せず、徐々に再起動します。プローブを区別するのに役立つ 2 つの観察はどれですか?",
+        "options": {
+          "a": "Readiness Probe エラーにより、バックエンド ServiceからPodが削除されます",
+          "b": "Liveness プローブでエラーが繰り返し発生すると、kubelet がコンテナを再起動する可能性があります",
+          "c": "Readiness Probe エラーにより常にDeploymentが削除される",
+          "d": "Liveness プローブは DNS レコードにのみ影響します"
+        },
+        "explanation": "Readiness は、Pod がトラフィックを受信する準備ができているかどうかを制御します。 liveness は、回復するためにコンテナを再起動する必要があるかどうかを決定します。",
+        "tags": [
+          "トラブルシューティング 30%",
+          "プローブ",
+          "再起動"
+        ],
+        "sourceLabel": "Kubernetes: プローブの構成"
+      }
+    },
+    "audit": {
+      "status": "verified",
+      "auditedAt": "2026-07-19",
+      "officialSources": [
+        "https://v1-35.docs.kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/",
+        "https://github.com/cncf/curriculum/blob/master/CKA_Curriculum_v1.35.pdf"
+      ],
+      "note": "Reviewed against the Kubernetes v1.35 documentation and CKA v1.35 curriculum."
+    }
+  },
+  {
+    "id": "cka-certificate-expiration",
+    "type": "single",
+    "prompt": "Control plane kubeadm có dấu hiệu lỗi TLS. Lệnh nào kiểm tra thời hạn certificate do kubeadm quản lý?",
+    "options": [
+      {
+        "id": "a",
+        "label": "kubeadm certs check-expiration"
+      },
+      {
+        "id": "b",
+        "label": "kubectl top certificates"
+      },
+      {
+        "id": "c",
+        "label": "kubelet certs renew --all"
+      },
+      {
+        "id": "d",
+        "label": "etcdctl certificate list"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "`kubeadm certs check-expiration` hiển thị thời hạn của PKI do kubeadm quản lý và giúp xác định certificate nào cần được gia hạn.",
+    "tags": [
+      "Troubleshooting 30%",
+      "Certificate",
+      "kubeadm"
+    ],
+    "sourceLabel": "Kubernetes: Certificate Management with kubeadm",
+    "sourceUrl": "https://v1-35.docs.kubernetes.io/docs/tasks/administer-cluster/kubeadm/kubeadm-certs/",
+    "translations": {
+      "en": {
+        "prompt": "Control plane kubeadm shows signs of TLS error. Which command checks the certificate expiration date managed by kubeadm?",
+        "options": {
+          "a": "kubeadm certs check-expiration",
+          "b": "kubectl top certificates",
+          "c": "kubelet certs renew --all",
+          "d": "etcdctl certificate list"
+        },
+        "explanation": "`kubeadm certs check-expiration` displays the expiry date of the PKI managed by kubeadm and helps determine which certificates need to be renewed.",
+        "tags": [
+          "Troubleshooting 30%",
+          "Certificate",
+          "kubeadm"
+        ],
+        "sourceLabel": "Kubernetes: Certificate Management with kubeadm"
+      },
+      "ja": {
+        "prompt": "コントロール プレーン kubeadm に TLS エラーの兆候が見られます。 kubeadm によって管理される証明書の有効期限を確認するコマンドはどれですか?",
+        "options": {
+          "a": "kubeadm certs check-expiration",
+          "b": "kubectl top certificates",
+          "c": "kubelet 証明書を更新 --all",
+          "d": "etcdctl certificate list"
+        },
+        "explanation": "`kubeadm certs check-expiration` は、kubeadm によって管理される PKI の有効期限を表示し、どの証明書を更新する必要があるかを判断するのに役立ちます。",
+        "tags": [
+          "トラブルシューティング 30%",
+          "証明書",
+          "kubeadm"
+        ],
+        "sourceLabel": "Kubernetes: kubeadm を使用した証明書管理"
+      }
+    },
+    "audit": {
+      "status": "verified",
+      "auditedAt": "2026-07-19",
+      "officialSources": [
+        "https://v1-35.docs.kubernetes.io/docs/tasks/administer-cluster/kubeadm/kubeadm-certs/",
+        "https://github.com/cncf/curriculum/blob/master/CKA_Curriculum_v1.35.pdf"
+      ],
+      "note": "Reviewed against the Kubernetes v1.35 documentation and CKA v1.35 curriculum."
+    }
+  },
+  {
+    "id": "cka-api-readyz",
+    "type": "single",
+    "prompt": "API server trả lời nhưng cluster hoạt động bất thường. Endpoint nào cho biết chi tiết từng readiness check?",
+    "options": [
+      {
+        "id": "a",
+        "label": "kubectl get --raw=/readyz?verbose"
+      },
+      {
+        "id": "b",
+        "label": "kubectl get --raw=/metrics/top"
+      },
+      {
+        "id": "c",
+        "label": "kubectl describe --raw=/api"
+      },
+      {
+        "id": "d",
+        "label": "kubectl logs --raw=/health"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "`/readyz?verbose` trả về kết quả chi tiết của các readiness check, hữu ích khi API server chạy nhưng một dependency chưa sẵn sàng.",
+    "tags": [
+      "Troubleshooting 30%",
+      "API Server",
+      "Health Check"
+    ],
+    "sourceLabel": "Kubernetes: API Health Endpoints",
+    "sourceUrl": "https://v1-35.docs.kubernetes.io/docs/reference/using-api/health-checks/",
+    "translations": {
+      "en": {
+        "prompt": "The API server responded but the cluster behaved abnormally. Which endpoint provides details for each readiness check?",
+        "options": {
+          "a": "kubectl get --raw=/readyz?verbose",
+          "b": "kubectl get --raw=/metrics/top",
+          "c": "kubectl describe --raw=/api",
+          "d": "kubectl logs --raw=/health"
+        },
+        "explanation": "`/readyz?verbose` returns detailed results of readiness checks, useful when the API server is running but a dependency is not ready.",
+        "tags": [
+          "Troubleshooting 30%",
+          "API Server",
+          "Health Check"
+        ],
+        "sourceLabel": "Kubernetes: Health Endpoints API"
+      },
+      "ja": {
+        "prompt": "API サーバーは応答しましたが、クラスターは異常な動作をしました。各準備状況チェックの詳細を提供するエンドポイントはどれですか?",
+        "options": {
+          "a": "kubectl get --raw=/readyz?verbose",
+          "b": "kubectl get --raw=/metrics/top",
+          "c": "kubectl describe --raw=/api",
+          "d": "kubectl logs --raw=/health"
+        },
+        "explanation": "`/readyz?verbose` は、準備状況チェックの詳細な結果を返します。これは、API サーバーが実行されているが、依存関係の準備ができていない場合に役立ちます。",
+        "tags": [
+          "トラブルシューティング 30%",
+          "APIサーバー",
+          "健康診断"
+        ],
+        "sourceLabel": "Kubernetes: ヘルス エンドポイント API"
+      }
+    },
+    "audit": {
+      "status": "verified",
+      "auditedAt": "2026-07-19",
+      "officialSources": [
+        "https://v1-35.docs.kubernetes.io/docs/reference/using-api/health-checks/",
+        "https://github.com/cncf/curriculum/blob/master/CKA_Curriculum_v1.35.pdf"
+      ],
+      "note": "Reviewed against the Kubernetes v1.35 documentation and CKA v1.35 curriculum."
+    }
+  },
+  {
+    "id": "cka-node-maintenance",
+    "type": "multiple",
+    "prompt": "Chuẩn bị bảo trì một worker node. Hai bước nào tạo quy trình an toàn thông thường?",
+    "options": [
+      {
+        "id": "a",
+        "label": "kubectl cordon worker-1"
+      },
+      {
+        "id": "b",
+        "label": "kubectl drain worker-1 --ignore-daemonsets"
+      },
+      {
+        "id": "c",
+        "label": "kubectl delete node worker-1 --force"
+      },
+      {
+        "id": "d",
+        "label": "Xóa toàn bộ Pod bằng --all-namespaces"
+      }
+    ],
+    "correctOptionIds": [
+      "a",
+      "b"
+    ],
+    "explanation": "Cordon ngăn workload mới được schedule; drain dùng Eviction API để di chuyển workload có thể evict và tôn trọng PodDisruptionBudget.",
+    "tags": [
+      "Cluster Architecture 25%",
+      "Node",
+      "Maintenance"
+    ],
+    "sourceLabel": "Kubernetes: Safely Drain a Node",
+    "sourceUrl": "https://v1-35.docs.kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/",
+    "translations": {
+      "en": {
+        "prompt": "Prepare to maintain a worker node. What two steps create a common safety procedure?",
+        "options": {
+          "a": "kubectl cordon worker-1",
+          "b": "kubectl drain worker-1 --ignore-daemonsets",
+          "c": "kubectl delete node worker-1 --force",
+          "d": "Delete the entire Pod with --all-namespaces"
+        },
+        "explanation": "Cordon prevents new workloads from being scheduled; drain uses the Eviction API to move evictable workloads and respects the PodDisruptionBudget.",
+        "tags": [
+          "Cluster Architecture 25%",
+          "Node",
+          "Maintenance"
+        ],
+        "sourceLabel": "Kubernetes: Safely Drain a Node"
+      },
+      "ja": {
+        "prompt": "ワーカー ノードを保守する準備をします。共通の安全手順を作成する 2 つの手順は何ですか?",
+        "options": {
+          "a": "kubectl cordon worker-1",
+          "b": "kubectl drain worker-1 --ignore-daemonsets",
+          "c": "kubectl delete node worker-1 --force",
+          "d": "--all-namespaces を使用してPod全体を削除します"
+        },
+        "explanation": "Cordon は、新しいワークロードがスケジュールされるのを防ぎます。drainは、エビクション API を使用してエビクション可能なワークロードを移動し、PodDisruptionBudget を尊重します。",
+        "tags": [
+          "クラスターアーキテクチャ 25%",
+          "ノード",
+          "メンテナンス"
+        ],
+        "sourceLabel": "Kubernetes: ノードを安全にdrainする"
+      }
+    },
+    "audit": {
+      "status": "verified",
+      "auditedAt": "2026-07-19",
+      "officialSources": [
+        "https://v1-35.docs.kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/",
+        "https://github.com/cncf/curriculum/blob/master/CKA_Curriculum_v1.35.pdf"
+      ],
+      "note": "Reviewed against the Kubernetes v1.35 documentation and CKA v1.35 curriculum."
+    }
+  },
+  {
+    "id": "cka-rbac-check",
+    "type": "single",
+    "prompt": "Lệnh nào kiểm tra user `dev` có được phép tạo Deployment trong namespace `team-a`?",
+    "code": "kubectl auth can-i create deployments --as=dev -n team-a",
+    "options": [
+      {
+        "id": "a",
+        "label": "Lệnh trên là phù hợp"
+      },
+      {
+        "id": "b",
+        "label": "Phải dùng kubectl explain"
+      },
+      {
+        "id": "c",
+        "label": "Phải đăng nhập trực tiếp bằng user dev"
+      },
+      {
+        "id": "d",
+        "label": "Chỉ có thể kiểm tra qua audit log"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "`kubectl auth can-i` thực hiện authorization check; `--as` mô phỏng identity nếu người chạy có quyền impersonate.",
+    "tags": [
+      "Cluster Architecture 25%",
+      "RBAC",
+      "Authorization"
+    ],
+    "sourceLabel": "Kubernetes: Authorization",
+    "sourceUrl": "https://v1-35.docs.kubernetes.io/docs/reference/access-authn-authz/authorization/",
+    "translations": {
+      "en": {
+        "prompt": "Which command checks whether user `dev` is allowed to create Deployments in namespace `team-a`?",
+        "options": {
+          "a": "The above command is appropriate",
+          "b": "Must use kubectl explain",
+          "c": "Must log in directly with the dev user",
+          "d": "Can only be checked via audit log"
+        },
+        "explanation": "`kubectl auth can-i` performs authorization check; `--as` simulates identity if the runner has impersonate permission.",
+        "tags": [
+          "Cluster Architecture 25%",
+          "RBAC",
+          "Authorization"
+        ],
+        "sourceLabel": "Kubernetes: Authorization"
+      },
+      "ja": {
+        "prompt": "ユーザー `dev` がNamespace `team-a` にDeploymentを作成できるかどうかを確認するコマンドはどれですか?",
+        "options": {
+          "a": "上記のコマンドは適切です",
+          "b": "kubectl Explainを使用する必要があります",
+          "c": "dev ユーザーで直接ログインする必要があります",
+          "d": "監査ログでのみ確認可能"
+        },
+        "explanation": "`kubectl auth can-i` は認可チェックを実行します。 `--as` は、ランナーが偽装権限を持っている場合に ID をシミュレートします。",
+        "tags": [
+          "クラスターアーキテクチャ 25%",
+          "RBAC",
+          "認可"
+        ],
+        "sourceLabel": "Kubernetes: 認可"
+      }
+    },
+    "audit": {
+      "status": "verified",
+      "auditedAt": "2026-07-19",
+      "officialSources": [
+        "https://v1-35.docs.kubernetes.io/docs/reference/access-authn-authz/authorization/",
+        "https://github.com/cncf/curriculum/blob/master/CKA_Curriculum_v1.35.pdf"
+      ],
+      "note": "Reviewed against the Kubernetes v1.35 documentation and CKA v1.35 curriculum."
+    }
+  },
+  {
+    "id": "cka-kubeadm-upgrade-order",
+    "type": "single",
+    "prompt": "Khi nâng cấp cluster kubeadm nhiều node, thứ tự tổng quát nào đúng?",
+    "options": [
+      {
+        "id": "a",
+        "label": "Nâng control plane đầu tiên, sau đó lần lượt các worker node"
+      },
+      {
+        "id": "b",
+        "label": "Nâng toàn bộ worker đồng thời trước control plane"
+      },
+      {
+        "id": "c",
+        "label": "Chỉ nâng kubectl trên máy cá nhân"
+      },
+      {
+        "id": "d",
+        "label": "Xóa cluster rồi restore Deployment"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Quy trình kubeadm nâng control plane trước rồi mới nâng kubelet/kubectl trên các node còn lại, đồng thời tuân thủ version skew được hỗ trợ.",
+    "tags": [
+      "Cluster Architecture 25%",
+      "kubeadm",
+      "Upgrade"
+    ],
+    "sourceLabel": "Kubernetes: Upgrade kubeadm Clusters",
+    "sourceUrl": "https://v1-35.docs.kubernetes.io/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade/",
+    "translations": {
+      "en": {
+        "prompt": "When upgrading a multi-node kubeadm cluster, what is the correct general order?",
+        "options": {
+          "a": "Raise the control plane first, then the worker nodes one by one",
+          "b": "Raise all workers simultaneously in front of the control plane",
+          "c": "Only upgrade kubectl on personal computers",
+          "d": "Delete the cluster then restore Deployment"
+        },
+        "explanation": "The kubeadm process upgrades the control plane first and then upgrades kubelet/kubectl on the remaining nodes, while complying with the supported version skew.",
+        "tags": [
+          "Cluster Architecture 25%",
+          "kubeadm",
+          "Upgrade"
+        ],
+        "sourceLabel": "Kubernetes: Upgrade kubeadm Clusters"
+      },
+      "ja": {
+        "prompt": "マルチノードの kubeadm クラスターをアップグレードする場合、一般的な正しい順序は何ですか?",
+        "options": {
+          "a": "最初にコントロール プレーンを起動し、次にワーカー ノードを 1 つずつ起動します。",
+          "b": "すべてのワーカーをコントロール プレーンの前で同時に立ち上げます。",
+          "c": "パソコン上の kubectl のみをアップグレードする",
+          "d": "クラスターを削除してからDeploymentを復元する"
+        },
+        "explanation": "kubeadm プロセスは、サポートされているバージョン スキューに準拠しながら、最初にコントロール プレーンをアップグレードし、次に残りのノードの kubelet/kubectl をアップグレードします。",
+        "tags": [
+          "クラスターアーキテクチャ 25%",
+          "kubeadm",
+          "アップグレード"
+        ],
+        "sourceLabel": "Kubernetes: kubeadm クラスターのアップグレード"
+      }
+    },
+    "audit": {
+      "status": "verified",
+      "auditedAt": "2026-07-19",
+      "officialSources": [
+        "https://v1-35.docs.kubernetes.io/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade/",
+        "https://github.com/cncf/curriculum/blob/master/CKA_Curriculum_v1.35.pdf"
+      ],
+      "note": "Reviewed against the Kubernetes v1.35 documentation and CKA v1.35 curriculum."
+    }
+  },
+  {
+    "id": "cka-etcd-snapshot",
+    "type": "multiple",
+    "prompt": "Backup etcd của control plane bảo vệ dữ liệu nào và cần giữ thêm gì để restore an toàn?",
+    "options": [
+      {
+        "id": "a",
+        "label": "Lưu trạng thái object Kubernetes trong etcd"
+      },
+      {
+        "id": "b",
+        "label": "Giữ certificate/key và tham số endpoint tương ứng"
+      },
+      {
+        "id": "c",
+        "label": "Tự động lưu image container trong registry"
+      },
+      {
+        "id": "d",
+        "label": "Thay thế hoàn toàn backup manifest/config bên ngoài cluster"
+      }
+    ],
+    "correctOptionIds": [
+      "a",
+      "b"
+    ],
+    "explanation": "Snapshot etcd lưu trạng thái API. Restore cần đúng công cụ, endpoint và TLS material; các tài sản ngoài etcd vẫn cần chiến lược backup riêng.",
+    "tags": [
+      "Cluster Architecture 25%",
+      "etcd",
+      "Backup"
+    ],
+    "sourceLabel": "Kubernetes: Operating etcd Clusters",
+    "sourceUrl": "https://v1-35.docs.kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/",
+    "translations": {
+      "en": {
+        "prompt": "What data does the control plane's etcd backup protect and what else is needed for a safe restore?",
+        "options": {
+          "a": "Save the state of the Kubernetes object in etcd",
+          "b": "Keep the certificate/key and corresponding endpoint parameters",
+          "c": "Automatically save container images in the registry",
+          "d": "Completely replace backup manifest/config outside the cluster"
+        },
+        "explanation": "Snapshot etcd saves API state. Restore requires the right tools, endpoints and TLS material; Assets other than etcd still need their own backup strategy.",
+        "tags": [
+          "Cluster Architecture 25%",
+          "etcd",
+          "Backup"
+        ],
+        "sourceLabel": "Kubernetes: Operating etcd Clusters"
+      },
+      "ja": {
+        "prompt": "コントロール プレーンの etcd バックアップはどのデータを保護しますか? 安全な復元には他に何が必要ですか?",
+        "options": {
+          "a": "Kubernetes オブジェクトの状態を etcd に保存する",
+          "b": "証明書/キーおよび対応するエンドポイントパラメータを保持します。",
+          "c": "コンテナイメージをレジストリに自動的に保存する",
+          "d": "クラスタ外のバックアップマニフェスト/構成を完全に置き換えます"
+        },
+        "explanation": "スナップショット etcd は API の状態を保存します。復元には適切なツール、エンドポイント、TLS マテリアルが必要です。 etcd 以外のアセットにも独自のバックアップ戦略が必要です。",
+        "tags": [
+          "クラスターアーキテクチャ 25%",
+          "etcd",
+          "バックアップ"
+        ],
+        "sourceLabel": "Kubernetes: etcd クラスターの運用"
+      }
+    },
+    "audit": {
+      "status": "verified",
+      "auditedAt": "2026-07-19",
+      "officialSources": [
+        "https://v1-35.docs.kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/",
+        "https://github.com/cncf/curriculum/blob/master/CKA_Curriculum_v1.35.pdf"
+      ],
+      "note": "Reviewed against the Kubernetes v1.35 documentation and CKA v1.35 curriculum."
+    }
+  },
+  {
+    "id": "cka-ha-control-plane-endpoint",
+    "type": "single",
+    "prompt": "Trong kubeadm HA, `controlPlaneEndpoint` nên trỏ tới đâu?",
+    "options": [
+      {
+        "id": "a",
+        "label": "Endpoint ổn định của load balancer phía trước các API server"
+      },
+      {
+        "id": "b",
+        "label": "ClusterIP của một Service ứng dụng"
+      },
+      {
+        "id": "c",
+        "label": "IP Pod CoreDNS đầu tiên"
+      },
+      {
+        "id": "d",
+        "label": "NodePort của kube-proxy"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Endpoint ổn định giúp client và node kết nối tới API server còn khỏe khi một control-plane node không sẵn sàng.",
+    "tags": [
+      "Cluster Architecture 25%",
+      "High Availability",
+      "kubeadm"
+    ],
+    "sourceLabel": "Kubernetes: Highly Available kubeadm Cluster",
+    "sourceUrl": "https://v1-35.docs.kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/",
+    "translations": {
+      "en": {
+        "prompt": "In kubeadm HA, where should `controlPlaneEndpoint` point to?",
+        "options": {
+          "a": "Stable endpoint of load balancer in front of API servers",
+          "b": "ClusterIP of an application Service",
+          "c": "First IP Pod CoreDNS",
+          "d": "NodePort of kube-proxy"
+        },
+        "explanation": "A stable endpoint helps clients and nodes connect to a healthy API server when a control-plane node is not available.",
+        "tags": [
+          "Cluster Architecture 25%",
+          "High Availability",
+          "kubeadm"
+        ],
+        "sourceLabel": "Kubernetes: Highly Available kubeadm Cluster"
+      },
+      "ja": {
+        "prompt": "kubeadm HA では、`controlPlaneEndpoint` はどこを指す必要がありますか?",
+        "options": {
+          "a": "API サーバーの前にあるロード バランサーの安定したエンドポイント",
+          "b": "アプリケーションServiceのClusterIP",
+          "c": "最初の IP Pod CoreDNS",
+          "d": "kube-proxyのNodePort"
+        },
+        "explanation": "安定したエンドポイントは、コントロール プレーン ノードが利用できない場合に、クライアントとノードが正常な API サーバーに接続するのに役立ちます。",
+        "tags": [
+          "クラスターアーキテクチャ 25%",
+          "高可用性",
+          "kubeadm"
+        ],
+        "sourceLabel": "Kubernetes: 高可用性 kubeadm クラスター"
+      }
+    },
+    "audit": {
+      "status": "verified",
+      "auditedAt": "2026-07-19",
+      "officialSources": [
+        "https://v1-35.docs.kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/",
+        "https://github.com/cncf/curriculum/blob/master/CKA_Curriculum_v1.35.pdf"
+      ],
+      "note": "Reviewed against the Kubernetes v1.35 documentation and CKA v1.35 curriculum."
+    }
+  },
+  {
+    "id": "cka-kustomize-apply",
+    "type": "single",
+    "prompt": "Một thư mục có `kustomization.yaml`. Lệnh kubectl nào render và apply trực tiếp nội dung đó?",
+    "options": [
+      {
+        "id": "a",
+        "label": "kubectl apply -k ./overlays/prod"
+      },
+      {
+        "id": "b",
+        "label": "kubectl apply -f kustomization.yaml --raw"
+      },
+      {
+        "id": "c",
+        "label": "kubectl rollout kustomize ./overlays/prod"
+      },
+      {
+        "id": "d",
+        "label": "kubectl create chart ./overlays/prod"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "`kubectl apply -k` dùng Kustomize tích hợp để dựng resource từ base/overlay rồi apply kết quả vào cluster.",
+    "tags": [
+      "Cluster Architecture 25%",
+      "Kustomize",
+      "Configuration"
+    ],
+    "sourceLabel": "Kubernetes: Declarative Management Using Kustomize",
+    "sourceUrl": "https://v1-35.docs.kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/",
+    "translations": {
+      "en": {
+        "prompt": "A folder with `kustomization.yaml`. Which kubectl command renders and applies that content directly?",
+        "options": {
+          "a": "kubectl apply -k ./overlays/prod",
+          "b": "kubectl apply -f kustomization.yaml --raw",
+          "c": "kubectl rollout kustomize ./overlays/prod",
+          "d": "kubectl create chart ./overlays/prod"
+        },
+        "explanation": "`kubectl apply -k` uses integrated Kustomize to build resources from base/overlay and then apply the results to the cluster.",
+        "tags": [
+          "Cluster Architecture 25%",
+          "Kustomize",
+          "Configuration"
+        ],
+        "sourceLabel": "Kubernetes: Declarative Management Using Kustomize"
+      },
+      "ja": {
+        "prompt": "`kustomization.yaml` のフォルダー。そのコンテンツを直接レンダリングして適用する kubectl コマンドはどれですか?",
+        "options": {
+          "a": "kubectl apply -k ./overlays/prod",
+          "b": "kubectl apply -f kustomization.yaml --raw",
+          "c": "kubectl rollout kustomize ./overlays/prod",
+          "d": "kubectl create chart ./overlays/prod"
+        },
+        "explanation": "`kubectl apply -k` は、統合された KusTOMize を使用してベース/オーバーレイからリソースを構築し、その結果をクラスターに適用します。",
+        "tags": [
+          "クラスターアーキテクチャ 25%",
+          "Kustomizeする",
+          "構成"
+        ],
+        "sourceLabel": "Kubernetes: KusTOMize を使用した宣言型管理"
+      }
+    },
+    "audit": {
+      "status": "verified",
+      "auditedAt": "2026-07-19",
+      "officialSources": [
+        "https://v1-35.docs.kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/",
+        "https://github.com/cncf/curriculum/blob/master/CKA_Curriculum_v1.35.pdf"
+      ],
+      "note": "Reviewed against the Kubernetes v1.35 documentation and CKA v1.35 curriculum."
+    }
+  },
+  {
+    "id": "cka-crd-controller",
+    "type": "single",
+    "prompt": "Sau khi tạo CustomResourceDefinition, điều gì cần thêm để tự động thực hiện hành vi nghiệp vụ cho custom resource?",
+    "options": [
+      {
+        "id": "a",
+        "label": "Một controller/operator theo dõi và reconcile resource"
+      },
+      {
+        "id": "b",
+        "label": "Một Service loại LoadBalancer bắt buộc"
+      },
+      {
+        "id": "c",
+        "label": "Một StorageClass mặc định mới"
+      },
+      {
+        "id": "d",
+        "label": "Đổi CoreDNS thành DaemonSet"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "CRD mở rộng API và lưu custom object. Controller/operator mới là thành phần quan sát desired state và thực hiện reconcile.",
+    "tags": [
+      "Cluster Architecture 25%",
+      "CRD",
+      "Operator"
+    ],
+    "sourceLabel": "Kubernetes: Custom Resources",
+    "sourceUrl": "https://v1-35.docs.kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/",
+    "translations": {
+      "en": {
+        "prompt": "After creating a CustomResourceDefinition, what needs to be added to automatically perform business behavior for the custom resource?",
+        "options": {
+          "a": "A controller/operator monitors and reconciles the resource",
+          "b": "A Service of type LoadBalancer is required",
+          "c": "A new default StorageClass",
+          "d": "Change CoreDNS to DaemonSet"
+        },
+        "explanation": "CRD extends the API and saves custom objects. The new controller/operator is the component that observes the desired state and performs reconciliation.",
+        "tags": [
+          "Cluster Architecture 25%",
+          "CRD",
+          "Operator"
+        ],
+        "sourceLabel": "Kubernetes: Custom Resources"
+      },
+      "ja": {
+        "prompt": "CustomResourceDefinition を作成した後、カスタム リソースのビジネス動作を自動的に実行するには何を追加する必要がありますか?",
+        "options": {
+          "a": "コントローラー/オペレーターはリソースを監視し、調整します。",
+          "b": "LoadBalancer タイプのServiceが必要です",
+          "c": "新しいデフォルトのStorageClass",
+          "d": "CoreDNS を DaemonSet に変更する"
+        },
+        "explanation": "CRD は API を拡張し、カスタム オブジェクトを保存します。新しいコントローラー/オペレーターは、望ましい状態を監視し、調整を実行するコンポーネントです。",
+        "tags": [
+          "クラスターアーキテクチャ 25%",
+          "CRD",
+          "オペレーター"
+        ],
+        "sourceLabel": "Kubernetes: カスタム リソース"
+      }
+    },
+    "audit": {
+      "status": "verified",
+      "auditedAt": "2026-07-19",
+      "officialSources": [
+        "https://v1-35.docs.kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/",
+        "https://github.com/cncf/curriculum/blob/master/CKA_Curriculum_v1.35.pdf"
+      ],
+      "note": "Reviewed against the Kubernetes v1.35 documentation and CKA v1.35 curriculum."
+    }
+  },
+  {
+    "id": "cka-extension-interfaces",
+    "type": "multiple",
+    "prompt": "Ba ánh xạ interface nào đúng trong kiến trúc Kubernetes?",
+    "options": [
+      {
+        "id": "a",
+        "label": "CNI — networking"
+      },
+      {
+        "id": "b",
+        "label": "CSI — storage"
+      },
+      {
+        "id": "c",
+        "label": "CRI — container runtime"
+      },
+      {
+        "id": "d",
+        "label": "RBAC — container image format"
+      }
+    ],
+    "correctOptionIds": [
+      "a",
+      "b",
+      "c"
+    ],
+    "explanation": "CNI, CSI và CRI tạo boundary chuẩn cho network plugin, storage driver và container runtime. RBAC là cơ chế authorization.",
+    "tags": [
+      "Cluster Architecture 25%",
+      "CNI",
+      "CSI",
+      "CRI"
+    ],
+    "sourceLabel": "Kubernetes: Cluster Architecture",
+    "sourceUrl": "https://v1-35.docs.kubernetes.io/docs/concepts/architecture/",
+    "translations": {
+      "en": {
+        "prompt": "Which three interface mappings are correct in the Kubernetes architecture?",
+        "options": {
+          "a": "CNI — networking",
+          "b": "CSI — storage",
+          "c": "CRI — container runtime",
+          "d": "RBAC — container image format"
+        },
+        "explanation": "CNI, CSI and CRI create standard boundaries for network plugins, storage drivers and container runtimes. RBAC is an authorization mechanism.",
+        "tags": [
+          "Cluster Architecture 25%",
+          "CNI",
+          "CSI",
+          "CRI"
+        ],
+        "sourceLabel": "Kubernetes: Cluster Architecture"
+      },
+      "ja": {
+        "prompt": "Kubernetes アーキテクチャで正しい 3 つのインターフェイス マッピングはどれですか?",
+        "options": {
+          "a": "CNI — ネットワーキング",
+          "b": "CSI — ストレージ",
+          "c": "CRI — コンテナ ランタイム",
+          "d": "RBAC — コンテナイメージ形式"
+        },
+        "explanation": "CNI、CSI、および CRI は、ネットワーク プラグイン、ストレージ ドライバー、コンテナ ランタイムの標準境界を作成します。 RBAC は承認メカニズムです。",
+        "tags": [
+          "クラスターアーキテクチャ 25%",
+          "CNI",
+          "CSI",
+          "CRI"
+        ],
+        "sourceLabel": "Kubernetes: クラスター アーキテクチャ"
+      }
+    },
+    "audit": {
+      "status": "verified",
+      "auditedAt": "2026-07-19",
+      "officialSources": [
+        "https://v1-35.docs.kubernetes.io/docs/concepts/architecture/",
+        "https://github.com/cncf/curriculum/blob/master/CKA_Curriculum_v1.35.pdf"
+      ],
+      "note": "Reviewed against the Kubernetes v1.35 documentation and CKA v1.35 curriculum."
+    }
+  },
+  {
+    "id": "cka-helm-upgrade-install",
+    "type": "single",
+    "prompt": "Muốn cài release nếu chưa tồn tại và nâng cấp nếu đã có, lệnh Helm nào phù hợp?",
+    "options": [
+      {
+        "id": "a",
+        "label": "helm upgrade --install web ./chart"
+      },
+      {
+        "id": "b",
+        "label": "helm rollback --delete web ./chart"
+      },
+      {
+        "id": "c",
+        "label": "helm repo apply web ./chart"
+      },
+      {
+        "id": "d",
+        "label": "kubectl helm install web ./chart"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "`helm upgrade --install` dùng một command idempotent cho cả lần cài đầu và các lần cập nhật release tiếp theo.",
+    "tags": [
+      "Cluster Architecture 25%",
+      "Helm",
+      "Release"
+    ],
+    "sourceLabel": "Helm: Upgrade Command",
+    "sourceUrl": "https://helm.sh/docs/helm/helm_upgrade/",
+    "translations": {
+      "en": {
+        "prompt": "If you want to install a release if it doesn't exist yet and upgrade it if it already exists, which Helm command is suitable?",
+        "options": {
+          "a": "helm upgrade --install web ./chart",
+          "b": "helm rollback --delete web ./chart",
+          "c": "helm repo apply web ./chart",
+          "d": "kubectl helm install web ./chart"
+        },
+        "explanation": "`helm upgrade --install` uses an idempotent command for both initial installation and subsequent release updates.",
+        "tags": [
+          "Cluster Architecture 25%",
+          "Helm",
+          "Release"
+        ],
+        "sourceLabel": "Helm: Upgrade Command"
+      },
+      "ja": {
+        "prompt": "リリースがまだ存在しない場合はインストールし、すでに存在する場合はアップグレードする場合、どの Helm コマンドが適切ですか?",
+        "options": {
+          "a": "helm upgrade --install web ./chart",
+          "b": "helm rollback --delete web ./chart",
+          "c": "helm repo apply web ./chart",
+          "d": "kubectl helm install web ./chart"
+        },
+        "explanation": "`helm upgrade --install` は、初期インストールとその後のリリース更新の両方に冪等コマンドを使用します。",
+        "tags": [
+          "クラスターアーキテクチャ 25%",
+          "ヘルム",
+          "リリース"
+        ],
+        "sourceLabel": "ヘルム: アップグレード コマンド"
+      }
+    },
+    "audit": {
+      "status": "verified",
+      "auditedAt": "2026-07-19",
+      "officialSources": [
+        "https://helm.sh/docs/helm/helm_upgrade/",
+        "https://github.com/cncf/curriculum/blob/master/CKA_Curriculum_v1.35.pdf"
+      ],
+      "note": "Reviewed against the Kubernetes v1.35 documentation and CKA v1.35 curriculum."
+    }
+  },
+  {
+    "id": "cka-kubeadm-join-command",
+    "type": "single",
+    "prompt": "Join token cũ đã hết hạn. Lệnh nào tạo token mới và in đầy đủ worker join command?",
+    "options": [
+      {
+        "id": "a",
+        "label": "kubeadm token create --print-join-command"
+      },
+      {
+        "id": "b",
+        "label": "kubectl create token node --join"
+      },
+      {
+        "id": "c",
+        "label": "kubelet join --renew-token"
+      },
+      {
+        "id": "d",
+        "label": "kubeadm init phase worker-token"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Lệnh tạo bootstrap token mới và in command chứa API endpoint, token cùng CA certificate hash để worker có thể join cluster.",
+    "tags": [
+      "Cluster Architecture 25%",
+      "kubeadm",
+      "Bootstrap Token"
+    ],
+    "sourceLabel": "Kubernetes: kubeadm token",
+    "sourceUrl": "https://v1-35.docs.kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-token/",
+    "translations": {
+      "en": {
+        "prompt": "Join old expired token. Which command creates a new token and prints the full worker join command?",
+        "options": {
+          "a": "kubeadm token create --print-join-command",
+          "b": "kubectl create token node --join",
+          "c": "kubelet join --renew-token",
+          "d": "kubeadm init phase worker-token"
+        },
+        "explanation": "The command to create a new bootstrap token and print command contains the API endpoint, token and CA certificate hash so workers can join the cluster.",
+        "tags": [
+          "Cluster Architecture 25%",
+          "kubeadm",
+          "Bootstrap Tokens"
+        ],
+        "sourceLabel": "Kubernetes: kubeadm token"
+      },
+      "ja": {
+        "prompt": "期限切れの古いトークンに参加します。新しいトークンを作成し、完全なワーカー結合コマンドを出力するコマンドはどれですか?",
+        "options": {
+          "a": "kubeadm token create --print-join-command",
+          "b": "kubectl create token node --join",
+          "c": "kubelet join --renew-token",
+          "d": "kubeadm init phase worker-token"
+        },
+        "explanation": "新しいブートストラップ トークンを作成するコマンドと印刷コマンドには、ワーカーがクラスターに参加できるようにするための API エンドポイント、トークン、および CA 証明書ハッシュが含まれています。",
+        "tags": [
+          "クラスターアーキテクチャ 25%",
+          "kubeadm",
+          "ブートストラップトークン"
+        ],
+        "sourceLabel": "Kubernetes: kubeadm トークン"
+      }
+    },
+    "audit": {
+      "status": "verified",
+      "auditedAt": "2026-07-19",
+      "officialSources": [
+        "https://v1-35.docs.kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-token/",
+        "https://github.com/cncf/curriculum/blob/master/CKA_Curriculum_v1.35.pdf"
+      ],
+      "note": "Reviewed against the Kubernetes v1.35 documentation and CKA v1.35 curriculum."
+    }
+  },
+  {
+    "id": "cka-network-policy-default-deny",
+    "type": "single",
+    "prompt": "NetworkPolicy có `podSelector: {}` và chỉ khai báo `policyTypes: [Ingress]` nhưng không có rule ingress sẽ làm gì?",
+    "options": [
+      {
+        "id": "a",
+        "label": "Cô lập ingress của mọi Pod trong namespace được áp dụng"
+      },
+      {
+        "id": "b",
+        "label": "Chặn egress của mọi namespace trong cluster"
+      },
+      {
+        "id": "c",
+        "label": "Xóa EndpointSlice của Service"
+      },
+      {
+        "id": "d",
+        "label": "Chỉ chặn traffic từ node control plane"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Selector rỗng chọn mọi Pod trong cùng namespace. Khi Pod bị chọn cho Ingress mà không có rule cho phép, ingress tới Pod bị từ chối.",
+    "tags": [
+      "Services & Networking 20%",
+      "NetworkPolicy",
+      "Ingress"
+    ],
+    "sourceLabel": "Kubernetes: Network Policies",
+    "sourceUrl": "https://v1-35.docs.kubernetes.io/docs/concepts/services-networking/network-policies/",
+    "translations": {
+      "en": {
+        "prompt": "NetworkPolicy has `podSelector: {}` and only declares `policyTypes: [Ingress]` but has no ingress rule, what will it do?",
+        "options": {
+          "a": "Isolate the ingress of every Pod in the applied namespace",
+          "b": "Block egress of every namespace in the cluster",
+          "c": "Delete Service EndpointSlice",
+          "d": "Only block traffic from the control plane node"
+        },
+        "explanation": "Empty selector selects all Pods in the same namespace. When a Pod is selected for Ingress without a rule allowing it, ingress to the Pod is denied.",
+        "tags": [
+          "Services & Networking 20%",
+          "NetworkPolicy",
+          "Ingress"
+        ],
+        "sourceLabel": "Kubernetes: Network Policies"
+      },
+      "ja": {
+        "prompt": "NetworkPolicy には `podSelector: {}` があり、`policyTypes: [Ingress]` を宣言するだけですが、イングレス ルールがありません。どうなりますか?",
+        "options": {
+          "a": "適用されたNamespace内のすべての Pod のイングレスを分離します。",
+          "b": "クラスター内のすべてのNamespaceの出力をブロックする",
+          "c": "Serviceエンドポイントスライスの削除",
+          "d": "コントロール プレーン ノードからのトラフィックのみをブロックする"
+        },
+        "explanation": "空のセレクターは、同じNamespace内のすべての Pod を選択します。許可するルールなしで Pod が Ingress に選択されると、Pod への Ingress は拒否されます。",
+        "tags": [
+          "Serviceとネットワーキング 20%",
+          "ネットワークポリシー",
+          "イングレス"
+        ],
+        "sourceLabel": "Kubernetes: ネットワーク ポリシー"
+      }
+    },
+    "audit": {
+      "status": "verified",
+      "auditedAt": "2026-07-19",
+      "officialSources": [
+        "https://v1-35.docs.kubernetes.io/docs/concepts/services-networking/network-policies/",
+        "https://github.com/cncf/curriculum/blob/master/CKA_Curriculum_v1.35.pdf"
+      ],
+      "note": "Reviewed against the Kubernetes v1.35 documentation and CKA v1.35 curriculum."
+    }
+  },
+  {
+    "id": "cka-service-nodeport",
+    "type": "multiple",
+    "prompt": "Hai mô tả nào đúng với Service loại NodePort?",
+    "options": [
+      {
+        "id": "a",
+        "label": "Vẫn có ClusterIP để truy cập nội bộ cluster"
+      },
+      {
+        "id": "b",
+        "label": "Mở cùng một nodePort trên các node phù hợp"
+      },
+      {
+        "id": "c",
+        "label": "Tự tạo Ingress Controller"
+      },
+      {
+        "id": "d",
+        "label": "Bắt buộc cấp volume cho mỗi backend Pod"
+      }
+    ],
+    "correctOptionIds": [
+      "a",
+      "b"
+    ],
+    "explanation": "NodePort xây trên Service ClusterIP và công bố một cổng trên node. Nó không tự cung cấp routing HTTP như Ingress/Gateway.",
+    "tags": [
+      "Services & Networking 20%",
+      "Service",
+      "NodePort"
+    ],
+    "sourceLabel": "Kubernetes: Service Types",
+    "sourceUrl": "https://v1-35.docs.kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types",
+    "translations": {
+      "en": {
+        "prompt": "Which two descriptions are correct for Service type NodePort?",
+        "options": {
+          "a": "Still have ClusterIP for internal cluster access",
+          "b": "Open the same nodePort on the matching nodes",
+          "c": "Create your own Ingress Controller",
+          "d": "Required volume level for each backend Pod"
+        },
+        "explanation": "NodePort builds on Service ClusterIP and publishes a port on the node. It does not provide HTTP routing itself like Ingress/Gateway.",
+        "tags": [
+          "Services & Networking 20%",
+          "Service",
+          "NodePort"
+        ],
+        "sourceLabel": "Kubernetes: Service Types"
+      },
+      "ja": {
+        "prompt": "Service タイプ NodePort について正しい 2 つの説明はどれですか?",
+        "options": {
+          "a": "内部クラスターアクセス用の ClusterIP がまだ残っています",
+          "b": "一致するノード上で同じnodePortを開きます",
+          "c": "独自の Ingress コントローラーを作成する",
+          "d": "各バックエンド Podに必要なボリューム レベル"
+        },
+        "explanation": "NodePort は Service ClusterIP 上に構築され、ノード上にポートを公開します。 Ingress/Gateway のように HTTP ルーティング自体は提供しません。",
+        "tags": [
+          "Serviceとネットワーキング 20%",
+          "Service",
+          "ノードポート"
+        ],
+        "sourceLabel": "Kubernetes: Serviceの種類"
+      }
+    },
+    "audit": {
+      "status": "verified",
+      "auditedAt": "2026-07-19",
+      "officialSources": [
+        "https://v1-35.docs.kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types",
+        "https://github.com/cncf/curriculum/blob/master/CKA_Curriculum_v1.35.pdf"
+      ],
+      "note": "Reviewed against the Kubernetes v1.35 documentation and CKA v1.35 curriculum."
+    }
+  },
+  {
+    "id": "cka-headless-service",
+    "type": "single",
+    "prompt": "Đặt `clusterIP: None` cho Service chủ yếu tạo hành vi nào?",
+    "options": [
+      {
+        "id": "a",
+        "label": "Không cấp virtual IP; DNS có thể trả về địa chỉ backend trực tiếp"
+      },
+      {
+        "id": "b",
+        "label": "Tự cấp external load balancer"
+      },
+      {
+        "id": "c",
+        "label": "Mã hóa toàn bộ traffic bằng mTLS"
+      },
+      {
+        "id": "d",
+        "label": "Chuyển Service thành ExternalName"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Headless Service bỏ qua load-balancing qua ClusterIP và cho phép cơ chế discovery trả về endpoint/Pod phù hợp trực tiếp.",
+    "tags": [
+      "Services & Networking 20%",
+      "Service",
+      "DNS"
+    ],
+    "sourceLabel": "Kubernetes: Headless Services",
+    "sourceUrl": "https://v1-35.docs.kubernetes.io/docs/concepts/services-networking/service/#headless-services",
+    "translations": {
+      "en": {
+        "prompt": "Setting `clusterIP: None` for a Service mainly creates what behavior?",
+        "options": {
+          "a": "Do not grant virtual IP; DNS can return the backend address directly",
+          "b": "Self-powered external load balancer",
+          "c": "Encrypt all traffic with mTLS",
+          "d": "Convert Service to ExternalName"
+        },
+        "explanation": "Headless Service bypasses load-balancing via ClusterIP and allows the discovery mechanism to return the appropriate endpoint/Pod directly.",
+        "tags": [
+          "Services & Networking 20%",
+          "Service",
+          "DNS"
+        ],
+        "sourceLabel": "Kubernetes: Headless Services"
+      },
+      "ja": {
+        "prompt": "Serviceに `clusterIP: None` を設定すると、主にどのような動作が作成されますか?",
+        "options": {
+          "a": "仮想 IP を付与しないでください。 DNS はバックエンド アドレスを直接返すことができます",
+          "b": "セルフパワーの外部ロードバランサ",
+          "c": "mTLS ですべてのトラフィックを暗号化する",
+          "d": "Serviceを外部名に変換する"
+        },
+        "explanation": "ヘッドレス Serviceは、ClusterIP を介した負荷分散をバイパスし、検出メカニズムが適切なエンドポイント/Podを直接返すことを可能にします。",
+        "tags": [
+          "Serviceとネットワーキング 20%",
+          "Service",
+          "DNS"
+        ],
+        "sourceLabel": "Kubernetes: ヘッドレス Service"
+      }
+    },
+    "audit": {
+      "status": "verified",
+      "auditedAt": "2026-07-19",
+      "officialSources": [
+        "https://v1-35.docs.kubernetes.io/docs/concepts/services-networking/service/#headless-services",
+        "https://github.com/cncf/curriculum/blob/master/CKA_Curriculum_v1.35.pdf"
+      ],
+      "note": "Reviewed against the Kubernetes v1.35 documentation and CKA v1.35 curriculum."
+    }
+  },
+  {
+    "id": "cka-gateway-httproute",
+    "type": "single",
+    "prompt": "Trong Gateway API, HTTPRoute gắn vào Gateway bằng trường nào?",
+    "options": [
+      {
+        "id": "a",
+        "label": "spec.parentRefs"
+      },
+      {
+        "id": "b",
+        "label": "spec.clusterIP"
+      },
+      {
+        "id": "c",
+        "label": "metadata.ownerReferences chỉ định Pod"
+      },
+      {
+        "id": "d",
+        "label": "status.loadBalancerClass"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "`parentRefs` mô tả resource cha nhận route, thường là Gateway. Listener và policy của Gateway quyết định route có được attach hay không.",
+    "tags": [
+      "Services & Networking 20%",
+      "Gateway API",
+      "HTTPRoute"
+    ],
+    "sourceLabel": "Kubernetes: Gateway API",
+    "sourceUrl": "https://v1-35.docs.kubernetes.io/docs/concepts/services-networking/gateway/",
+    "translations": {
+      "en": {
+        "prompt": "In Gateway API, HTTPRoute is attached to Gateway with what field?",
+        "options": {
+          "a": "spec.parentRefs",
+          "b": "spec.clusterIP",
+          "c": "metadata.ownerReferences specifies the Pod",
+          "d": "status.loadBalancerClass"
+        },
+        "explanation": "`parentRefs` describes the parent resource receiving the route, usually the Gateway. The Gateway's listener and policy decide whether the route is attached or not.",
+        "tags": [
+          "Services & Networking 20%",
+          "Gateway API",
+          "HTTPRoute"
+        ],
+        "sourceLabel": "Kubernetes: Gateway API"
+      },
+      "ja": {
+        "prompt": "Gateway API では、HTTPRoute はどのフィールドで Gateway に接続されますか?",
+        "options": {
+          "a": "spec.parentRefs",
+          "b": "spec.clusterIP",
+          "c": "metadata.ownerReferences はPodを指定します",
+          "d": "status.loadBalancerClass"
+        },
+        "explanation": "`parentRefs` は、ルートを受信する親リソース (通常はゲートウェイ) を記述します。ゲートウェイのリスナーとポリシーによって、ルートが接続されるかどうかが決まります。",
+        "tags": [
+          "Serviceとネットワーキング 20%",
+          "ゲートウェイAPI",
+          "HTTPルート"
+        ],
+        "sourceLabel": "Kubernetes: ゲートウェイ API"
+      }
+    },
+    "audit": {
+      "status": "verified",
+      "auditedAt": "2026-07-19",
+      "officialSources": [
+        "https://v1-35.docs.kubernetes.io/docs/concepts/services-networking/gateway/",
+        "https://github.com/cncf/curriculum/blob/master/CKA_Curriculum_v1.35.pdf"
+      ],
+      "note": "Reviewed against the Kubernetes v1.35 documentation and CKA v1.35 curriculum."
+    }
+  },
+  {
+    "id": "cka-ingress-controller",
+    "type": "single",
+    "prompt": "Đã tạo Ingress resource nhưng traffic không được xử lý. Điều kiện nền tảng nào thường còn thiếu?",
+    "options": [
+      {
+        "id": "a",
+        "label": "Ingress controller phù hợp với IngressClass"
+      },
+      {
+        "id": "b",
+        "label": "Một PersistentVolume loại hostPath"
+      },
+      {
+        "id": "c",
+        "label": "Một kubeadm token mới"
+      },
+      {
+        "id": "d",
+        "label": "Một static Pod chạy trên mọi worker"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Ingress resource chỉ mô tả rule. Controller triển khai dataplane và quan sát IngressClass mới biến rule thành routing thực tế.",
+    "tags": [
+      "Services & Networking 20%",
+      "Ingress",
+      "IngressClass"
+    ],
+    "sourceLabel": "Kubernetes: Ingress Controllers",
+    "sourceUrl": "https://v1-35.docs.kubernetes.io/docs/concepts/services-networking/ingress-controllers/",
+    "translations": {
+      "en": {
+        "prompt": "Ingress resource created but traffic is not processed. What foundational conditions are often missing?",
+        "options": {
+          "a": "Ingress controller matches IngressClass",
+          "b": "A PersistentVolume of type hostPath",
+          "c": "A new kubeadm token",
+          "d": "A static Pod runs on every worker"
+        },
+        "explanation": "Ingress resource only describes the rule. The controller deploys the dataplane and observes the new IngressClass to turn the rule into actual routing.",
+        "tags": [
+          "Services & Networking 20%",
+          "Ingress",
+          "IngressClass"
+        ],
+        "sourceLabel": "Kubernetes: Ingress Controllers"
+      },
+      "ja": {
+        "prompt": "Ingress リソースが作成されましたが、トラフィックは処理されません。欠落していることが多い基本的な条件は何ですか?",
+        "options": {
+          "a": "Ingress コントローラーが IngressClass と一致する",
+          "b": "hostPath タイプの Persistent Volume",
+          "c": "新しい kubeadm トークン",
+          "d": "静的Podはすべてのワーカーで実行されます"
+        },
+        "explanation": "Ingress リソースはルールのみを説明します。コントローラーはデータプレーンをデプロイし、新しい IngressClass を監視して、ルールを実際のルーティングに変換します。",
+        "tags": [
+          "Serviceとネットワーキング 20%",
+          "イングレス",
+          "イングレスクラス"
+        ],
+        "sourceLabel": "Kubernetes: Ingress コントローラー"
+      }
+    },
+    "audit": {
+      "status": "verified",
+      "auditedAt": "2026-07-19",
+      "officialSources": [
+        "https://v1-35.docs.kubernetes.io/docs/concepts/services-networking/ingress-controllers/",
+        "https://github.com/cncf/curriculum/blob/master/CKA_Curriculum_v1.35.pdf"
+      ],
+      "note": "Reviewed against the Kubernetes v1.35 documentation and CKA v1.35 curriculum."
+    }
+  },
+  {
+    "id": "cka-coredns-service-name",
+    "type": "single",
+    "prompt": "Trong đa số cluster, lệnh nào hữu ích để kiểm tra Service DNS hệ thống?",
+    "options": [
+      {
+        "id": "a",
+        "label": "kubectl -n kube-system get svc kube-dns"
+      },
+      {
+        "id": "b",
+        "label": "kubectl get ingress coredns -A"
+      },
+      {
+        "id": "c",
+        "label": "kubectl top storageclass kube-dns"
+      },
+      {
+        "id": "d",
+        "label": "kubectl drain coredns"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Ngay cả khi DNS implementation là CoreDNS, Service thường vẫn mang tên `kube-dns` để giữ khả năng tương thích.",
+    "tags": [
+      "Services & Networking 20%",
+      "CoreDNS",
+      "Service"
+    ],
+    "sourceLabel": "Kubernetes: Debugging DNS Resolution",
+    "sourceUrl": "https://v1-35.docs.kubernetes.io/docs/tasks/administer-cluster/dns-debugging-resolution/",
+    "translations": {
+      "en": {
+        "prompt": "In most clusters, which command is useful to check the system Service DNS?",
+        "options": {
+          "a": "kubectl -n kube-system get svc kube-dns",
+          "b": "kubectl get ingress coredns -A",
+          "c": "kubectl top storageclass kube-dns",
+          "d": "kubectl drain coredns"
+        },
+        "explanation": "Even if the DNS implementation is CoreDNS, the Service is usually named `kube-dns` to maintain compatibility.",
+        "tags": [
+          "Services & Networking 20%",
+          "CoreDNS",
+          "Service"
+        ],
+        "sourceLabel": "Kubernetes: Debugging DNS Resolution"
+      },
+      "ja": {
+        "prompt": "ほとんどのクラスターで、システムのService DNS をチェックするのに役立つコマンドはどれですか?",
+        "options": {
+          "a": "kubectl -n kube-system get svc kube-dns",
+          "b": "kubectl get ingress coredns -A",
+          "c": "kubectl top storageclass kube-dns",
+          "d": "kubectl drain coredns"
+        },
+        "explanation": "DNS 実装が CoreDNS であっても、互換性を維持するために、Serviceには通常、`kube-dns` という名前が付けられます。",
+        "tags": [
+          "Serviceとネットワーキング 20%",
+          "CoreDNS",
+          "Service"
+        ],
+        "sourceLabel": "Kubernetes: DNS 解決のデバッグ"
+      }
+    },
+    "audit": {
+      "status": "verified",
+      "auditedAt": "2026-07-19",
+      "officialSources": [
+        "https://v1-35.docs.kubernetes.io/docs/tasks/administer-cluster/dns-debugging-resolution/",
+        "https://github.com/cncf/curriculum/blob/master/CKA_Curriculum_v1.35.pdf"
+      ],
+      "note": "Reviewed against the Kubernetes v1.35 documentation and CKA v1.35 curriculum."
+    }
+  },
+  {
+    "id": "cka-cni-after-kubeadm",
+    "type": "single",
+    "prompt": "Sau `kubeadm init`, CoreDNS vẫn Pending và node chưa Ready. Thành phần nào thường phải cài tiếp?",
+    "options": [
+      {
+        "id": "a",
+        "label": "Một CNI network add-on tương thích"
+      },
+      {
+        "id": "b",
+        "label": "Một Ingress resource mặc định"
+      },
+      {
+        "id": "c",
+        "label": "Một PersistentVolume cho kubelet"
+      },
+      {
+        "id": "d",
+        "label": "Một HPA cho CoreDNS"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "kubeadm không cài Pod network. CNI add-on cung cấp networking cần thiết; CoreDNS thường chỉ schedule bình thường sau khi network được cấu hình.",
+    "tags": [
+      "Services & Networking 20%",
+      "CNI",
+      "kubeadm"
+    ],
+    "sourceLabel": "Kubernetes: Create a Cluster with kubeadm",
+    "sourceUrl": "https://v1-35.docs.kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/",
+    "translations": {
+      "en": {
+        "prompt": "After `kubeadm init`, CoreDNS is still Pending and the node is not Ready. Which components usually need to be installed next?",
+        "options": {
+          "a": "A compatible CNI network add-on",
+          "b": "A default Ingress resource",
+          "c": "A PersistentVolume for kubelet",
+          "d": "An HPA for CoreDNS"
+        },
+        "explanation": "kubeadm không cài Pod network. CNI add-on cung cấp networking cần thiết; CoreDNS thường chỉ schedule bình thường sau khi network được cấu hình.",
+        "tags": [
+          "Services & Networking 20%",
+          "CNI",
+          "kubeadm"
+        ],
+        "sourceLabel": "Kubernetes: Create a Cluster with kubeadm"
+      },
+      "ja": {
+        "prompt": "`kubeadm init` の後、CoreDNS はまだ保留中であり、ノードは準備完了ではありません。通常、次にインストールする必要があるコンポーネントはどれですか?",
+        "options": {
+          "a": "互換性のある CNI ネットワーク アドオン",
+          "b": "デフォルトの Ingress リソース",
+          "c": "kubelet の PersistentVolume",
+          "d": "CoreDNS 用の HPA"
+        },
+        "explanation": "kubeadm không cài Pod network. CNI add-on cung cấp networking cần thiết; CoreDNS thường chỉ schedule bình thường sau khi network được cấu hình.",
+        "tags": [
+          "Serviceとネットワーキング 20%",
+          "CNI",
+          "kubeadm"
+        ],
+        "sourceLabel": "Kubernetes: kubeadm を使用してクラスターを作成する"
+      }
+    },
+    "audit": {
+      "status": "verified",
+      "auditedAt": "2026-07-19",
+      "officialSources": [
+        "https://v1-35.docs.kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/",
+        "https://github.com/cncf/curriculum/blob/master/CKA_Curriculum_v1.35.pdf"
+      ],
+      "note": "Reviewed against the Kubernetes v1.35 documentation and CKA v1.35 curriculum."
+    }
+  },
+  {
+    "id": "cka-external-traffic-policy",
+    "type": "multiple",
+    "prompt": "Đặt `externalTrafficPolicy: Local` cho Service NodePort/LoadBalancer thường tạo hai tác động nào?",
+    "options": [
+      {
+        "id": "a",
+        "label": "Có thể giữ địa chỉ IP nguồn của client"
+      },
+      {
+        "id": "b",
+        "label": "Node chỉ chuyển traffic tới endpoint local phù hợp"
+      },
+      {
+        "id": "c",
+        "label": "Tự mã hóa traffic bằng TLS"
+      },
+      {
+        "id": "d",
+        "label": "Bỏ qua hoàn toàn kube-proxy hoặc dataplane tương đương"
+      }
+    ],
+    "correctOptionIds": [
+      "a",
+      "b"
+    ],
+    "explanation": "Chính sách Local tránh hop sang endpoint ở node khác, nhờ đó có thể giữ source IP; đổi lại traffic tới node không có endpoint local có thể không được phục vụ.",
+    "tags": [
+      "Services & Networking 20%",
+      "Service",
+      "Traffic Policy"
+    ],
+    "sourceLabel": "Kubernetes: Source IP for Services",
+    "sourceUrl": "https://v1-35.docs.kubernetes.io/docs/tutorials/services/source-ip/",
+    "translations": {
+      "en": {
+        "prompt": "Setting `externalTrafficPolicy: Local` for Service NodePort/LoadBalancer typically creates what two effects?",
+        "options": {
+          "a": "Can keep the source IP address of the client",
+          "b": "Node only forwards traffic to the appropriate local endpoint",
+          "c": "Self-encrypt traffic with TLS",
+          "d": "Completely bypass kube-proxy or equivalent dataplane"
+        },
+        "explanation": "The Local policy avoids jumping to an endpoint at another node, thereby preserving the source IP; In return, traffic to a node without a local endpoint may not be served.",
+        "tags": [
+          "Services & Networking 20%",
+          "Service",
+          "Traffic Policy"
+        ],
+        "sourceLabel": "Kubernetes: Source IP for Services"
+      },
+      "ja": {
+        "prompt": "Service NodePort/LoadBalancer に `externalTrafficPolicy: Local` を設定すると、通常、どのような 2 つの効果が生じますか?",
+        "options": {
+          "a": "クライアントの送信元IPアドレスを保持できる",
+          "b": "ノードはトラフィックを適切なローカル エンドポイントにのみ転送します。",
+          "c": "TLS によるトラフィックの自己暗号化",
+          "d": "kube-proxy または同等のデータプレーンを完全にバイパスします"
+        },
+        "explanation": "ローカル ポリシーは、別のノードのエンドポイントへのジャンプを回避し、それによってソース IP を保持します。その代わり、ローカル エンドポイントのないノードへのトラフィックは処理されない可能性があります。",
+        "tags": [
+          "Serviceとネットワーキング 20%",
+          "Service",
+          "交通政策"
+        ],
+        "sourceLabel": "Kubernetes: Serviceのソース IP"
+      }
+    },
+    "audit": {
+      "status": "verified",
+      "auditedAt": "2026-07-19",
+      "officialSources": [
+        "https://v1-35.docs.kubernetes.io/docs/tutorials/services/source-ip/",
+        "https://github.com/cncf/curriculum/blob/master/CKA_Curriculum_v1.35.pdf"
+      ],
+      "note": "Reviewed against the Kubernetes v1.35 documentation and CKA v1.35 curriculum."
+    }
+  },
+  {
+    "id": "cka-rollout-undo",
+    "type": "single",
+    "prompt": "Deployment vừa rollout image lỗi. Lệnh nào đưa workload về revision trước?",
+    "options": [
+      {
+        "id": "a",
+        "label": "kubectl rollout restart deployment/web"
+      },
+      {
+        "id": "b",
+        "label": "kubectl rollout undo deployment/web"
+      },
+      {
+        "id": "c",
+        "label": "kubectl scale deployment/web --replicas=0"
+      },
+      {
+        "id": "d",
+        "label": "kubectl replace deployment/web"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "`kubectl rollout undo` quay về revision trước của Deployment. Có thể thêm `--to-revision` khi cần chọn revision cụ thể.",
+    "tags": [
+      "Workloads & Scheduling 15%",
+      "Deployment",
+      "Rollout"
+    ],
+    "sourceLabel": "Kubernetes: Rolling Back a Deployment",
+    "sourceUrl": "https://v1-35.docs.kubernetes.io/docs/concepts/workloads/controllers/deployment/#rolling-back-a-deployment",
+    "translations": {
+      "en": {
+        "prompt": "Deployment just rolled out image error. Which command returns the workload to revision first?",
+        "options": {
+          "a": "kubectl rollout restart deployment/web",
+          "b": "kubectl rollout undo deployment/web",
+          "c": "kubectl scale deployment/web --replicas=0",
+          "d": "kubectl replace deployment/web"
+        },
+        "explanation": "`kubectl rollout undo` returns to the previous revision of Deployment. You can add `--to-revision` when you need to select a specific revision.",
+        "tags": [
+          "Workloads & Scheduling 15%",
+          "Deployment",
+          "Rollout"
+        ],
+        "sourceLabel": "Kubernetes: Rolling Back a Deployment"
+      },
+      "ja": {
+        "prompt": "Deployment時にイメージ エラーがロールアウトされました。ワークロードを最初にリビジョンに戻すコマンドはどれですか?",
+        "options": {
+          "a": "kubectl rollout restart deployment/web",
+          "b": "kubectl rollout undo deployment/web",
+          "c": "kubectl scale deployment/web --replicas=0",
+          "d": "kubectl replace deployment/web"
+        },
+        "explanation": "`kubectl rollout undo` は、Deploymentの以前のリビジョンに戻ります。特定のリビジョンを選択する必要がある場合は、`--to-revision` を追加できます。",
+        "tags": [
+          "ワークロードとスケジュール 15%",
+          "導入",
+          "ロールアウト"
+        ],
+        "sourceLabel": "Kubernetes: Deploymentのロールバック"
+      }
+    },
+    "audit": {
+      "status": "verified",
+      "auditedAt": "2026-07-19",
+      "officialSources": [
+        "https://v1-35.docs.kubernetes.io/docs/concepts/workloads/controllers/deployment/#rolling-back-a-deployment",
+        "https://github.com/cncf/curriculum/blob/master/CKA_Curriculum_v1.35.pdf"
+      ],
+      "note": "Reviewed against the Kubernetes v1.35 documentation and CKA v1.35 curriculum."
+    }
+  },
+  {
+    "id": "cka-configmap-env-update",
+    "type": "single",
+    "prompt": "Pod lấy ConfigMap qua biến môi trường. Sau khi ConfigMap thay đổi, làm sao để process nhận giá trị mới?",
+    "options": [
+      {
+        "id": "a",
+        "label": "Tạo lại/rollout Pod để biến môi trường được nạp lại"
+      },
+      {
+        "id": "b",
+        "label": "Không cần làm gì vì env tự đổi ngay"
+      },
+      {
+        "id": "c",
+        "label": "Chỉ restart kube-proxy"
+      },
+      {
+        "id": "d",
+        "label": "Đổi ConfigMap thành StorageClass"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Biến môi trường được thiết lập khi container khởi động và không tự cập nhật. Volume từ ConfigMap có cơ chế cập nhật khác nhưng ứng dụng vẫn phải đọc lại file.",
+    "tags": [
+      "Workloads & Scheduling 15%",
+      "ConfigMap",
+      "Configuration"
+    ],
+    "sourceLabel": "Kubernetes: Configure a Pod to Use a ConfigMap",
+    "sourceUrl": "https://v1-35.docs.kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/",
+    "translations": {
+      "en": {
+        "prompt": "Pod gets ConfigMap via environment variable. After ConfigMap changes, how does the process receive the new value?",
+        "options": {
+          "a": "Recreate/rollout the Pod so that the environment variables are reloaded",
+          "b": "No need to do anything because the env will change immediately",
+          "c": "Just restart kube-proxy",
+          "d": "Change ConfigMap to StorageClass"
+        },
+        "explanation": "Environment variables are set when the container starts and do not update themselves. Volume from ConfigMap has a different update mechanism, but the application still has to re-read the file.",
+        "tags": [
+          "Workloads & Scheduling 15%",
+          "ConfigMap",
+          "Configuration"
+        ],
+        "sourceLabel": "Kubernetes: Configure a Pod to Use a ConfigMap"
+      },
+      "ja": {
+        "prompt": "Podは環境変数を介して ConfigMap を取得します。 ConfigMap が変更された後、プロセスは新しい値をどのように受け取るのでしょうか?",
+        "options": {
+          "a": "環境変数が再ロードされるようにPodを再作成/ロールアウトします。",
+          "b": "環境はすぐに変更されるため、何もする必要はありません",
+          "c": "kube-proxyを再起動するだけです",
+          "d": "ConfigMap を StorageClass に変更します"
+        },
+        "explanation": "環境変数はコンテナの起動時に設定され、それ自体は更新されません。 ConfigMap からのボリュームには異なる更新メカニズムがありますが、アプリケーションは引き続きファイルを再読み取る必要があります。",
+        "tags": [
+          "ワークロードとスケジュール 15%",
+          "構成マップ",
+          "構成"
+        ],
+        "sourceLabel": "Kubernetes: ConfigMap を使用するようにPodを構成する"
+      }
+    },
+    "audit": {
+      "status": "verified",
+      "auditedAt": "2026-07-19",
+      "officialSources": [
+        "https://v1-35.docs.kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/",
+        "https://github.com/cncf/curriculum/blob/master/CKA_Curriculum_v1.35.pdf"
+      ],
+      "note": "Reviewed against the Kubernetes v1.35 documentation and CKA v1.35 curriculum."
+    }
+  },
+  {
+    "id": "cka-hpa-metrics",
+    "type": "multiple",
+    "prompt": "HPA theo CPU cần hai điều kiện nào để tính tỷ lệ sử dụng tài nguyên ổn định?",
+    "options": [
+      {
+        "id": "a",
+        "label": "Có Resource Metrics API hoạt động"
+      },
+      {
+        "id": "b",
+        "label": "Container khai báo CPU requests phù hợp"
+      },
+      {
+        "id": "c",
+        "label": "Service phải là LoadBalancer"
+      },
+      {
+        "id": "d",
+        "label": "Pod bắt buộc dùng hostNetwork"
+      }
+    ],
+    "correctOptionIds": [
+      "a",
+      "b"
+    ],
+    "explanation": "HPA cần metric hiện tại và CPU request làm mẫu số cho utilization. Thiếu request có thể khiến metric của Pod không dùng được trong phép tính.",
+    "tags": [
+      "Workloads & Scheduling 15%",
+      "HPA",
+      "Resources"
+    ],
+    "sourceLabel": "Kubernetes: Horizontal Pod Autoscaling",
+    "sourceUrl": "https://v1-35.docs.kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/",
+    "translations": {
+      "en": {
+        "prompt": "What two conditions does HPA by CPU need to calculate a stable resource utilization rate?",
+        "options": {
+          "a": "Has a working Resource Metrics API",
+          "b": "The container declares appropriate CPU requests",
+          "c": "Service must be LoadBalancer",
+          "d": "Pod is required to use hostNetwork"
+        },
+        "explanation": "HPA needs current metrics and CPU requests as denominators for utilization. Missing requests can cause the Pod's metrics to not be used in calculations.",
+        "tags": [
+          "Workloads & Scheduling 15%",
+          "HPA",
+          "Resources"
+        ],
+        "sourceLabel": "Kubernetes: Horizontal Pod Autoscaling"
+      },
+      "ja": {
+        "prompt": "CPU による HPA が安定したリソース使用率を計算するために必要な 2 つの条件は何ですか?",
+        "options": {
+          "a": "機能するリソース メトリック API がある",
+          "b": "コンテナは適切な CPU リクエストを宣言します",
+          "c": "Serviceはロードバランサーである必要があります",
+          "d": "hostNetworkを使用するにはPodが必要です"
+        },
+        "explanation": "HPA には、使用率の分母として現在のメトリックと CPU リクエストが必要です。リクエストが欠落していると、Podのメトリクスが計算に使用されなくなる可能性があります。",
+        "tags": [
+          "ワークロードとスケジュール 15%",
+          "HPA",
+          "リソース"
+        ],
+        "sourceLabel": "Kubernetes: 水平Pod自動スケーリング"
+      }
+    },
+    "audit": {
+      "status": "verified",
+      "auditedAt": "2026-07-19",
+      "officialSources": [
+        "https://v1-35.docs.kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/",
+        "https://github.com/cncf/curriculum/blob/master/CKA_Curriculum_v1.35.pdf"
+      ],
+      "note": "Reviewed against the Kubernetes v1.35 documentation and CKA v1.35 curriculum."
+    }
+  },
+  {
+    "id": "cka-required-node-affinity",
+    "type": "single",
+    "prompt": "Muốn Pod chỉ được schedule lên node có label `disk=ssd`, kiểu node affinity nào biểu diễn yêu cầu bắt buộc?",
+    "options": [
+      {
+        "id": "a",
+        "label": "requiredDuringSchedulingIgnoredDuringExecution"
+      },
+      {
+        "id": "b",
+        "label": "preferredDuringSchedulingIgnoredDuringExecution"
+      },
+      {
+        "id": "c",
+        "label": "podAntiAffinity chỉ với topologyKey rỗng"
+      },
+      {
+        "id": "d",
+        "label": "toleration không kèm taint"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "`requiredDuringSchedulingIgnoredDuringExecution` là điều kiện cứng lúc schedule; `preferred...` chỉ tăng điểm ưu tiên cho node phù hợp.",
+    "tags": [
+      "Workloads & Scheduling 15%",
+      "Scheduling",
+      "Node Affinity"
+    ],
+    "sourceLabel": "Kubernetes: Assign Pods to Nodes",
+    "sourceUrl": "https://v1-35.docs.kubernetes.io/docs/tasks/configure-pod-container/assign-pods-nodes-using-node-affinity/",
+    "translations": {
+      "en": {
+        "prompt": "If you want the Pod to only be scheduled to the node with label `disk=ssd`, what type of node affinity represents the required requirement?",
+        "options": {
+          "a": "requiredDuringSchedulingIgnoredDuringExecution",
+          "b": "preferredDuringSchedulingIgnoredDuringExecution",
+          "c": "podAntiAffinity with only empty topologyKey",
+          "d": "toleration without taint"
+        },
+        "explanation": "`requiredDuringSchedulingIgnoredDuringExecution` is a hard condition at schedule time; `preferred...` only increases the priority score for the appropriate node.",
+        "tags": [
+          "Workloads & Scheduling 15%",
+          "Scheduling",
+          "Node Affinity"
+        ],
+        "sourceLabel": "Kubernetes: Assign Pods to Nodes"
+      },
+      "ja": {
+        "prompt": "Podをラベル `disk=ssd` のノードにのみスケジュールしたい場合、必要な要件を表すノード アフィニティのタイプはどれですか?",
+        "options": {
+          "a": "必須スケジュール中無視実行中",
+          "b": "優先中スケジュール中無視実行中",
+          "c": "空のトポロジーキーのみを持つ podAntiAffinity",
+          "d": "汚れのない寛容さ"
+        },
+        "explanation": "`requiredDuringSchedulingIgnoredDuringExecution` はスケジュール時間では厳しい状態です。 `preferred...` は、適切なノードの優先度スコアのみを増加させます。",
+        "tags": [
+          "ワークロードとスケジュール 15%",
+          "スケジュール設定",
+          "ノードアフィニティ"
+        ],
+        "sourceLabel": "Kubernetes: Podをノードに割り当てる"
+      }
+    },
+    "audit": {
+      "status": "verified",
+      "auditedAt": "2026-07-19",
+      "officialSources": [
+        "https://v1-35.docs.kubernetes.io/docs/tasks/configure-pod-container/assign-pods-nodes-using-node-affinity/",
+        "https://github.com/cncf/curriculum/blob/master/CKA_Curriculum_v1.35.pdf"
+      ],
+      "note": "Reviewed against the Kubernetes v1.35 documentation and CKA v1.35 curriculum."
+    }
+  },
+  {
+    "id": "cka-pod-disruption-budget",
+    "type": "single",
+    "prompt": "PodDisruptionBudget chủ yếu bảo vệ workload trước loại gián đoạn nào?",
+    "options": [
+      {
+        "id": "a",
+        "label": "Voluntary disruption như drain node"
+      },
+      {
+        "id": "b",
+        "label": "Mọi hardware failure bất ngờ"
+      },
+      {
+        "id": "c",
+        "label": "Mọi lỗi code trong container"
+      },
+      {
+        "id": "d",
+        "label": "Image registry bị xóa"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "PDB giới hạn số Pod bị gián đoạn tự nguyện cùng lúc qua Eviction API. Nó không ngăn được sự cố node hoặc ứng dụng ngoài ý muốn.",
+    "tags": [
+      "Workloads & Scheduling 15%",
+      "PodDisruptionBudget",
+      "Availability"
+    ],
+    "sourceLabel": "Kubernetes: Specify a Disruption Budget",
+    "sourceUrl": "https://v1-35.docs.kubernetes.io/docs/tasks/run-application/configure-pdb/",
+    "translations": {
+      "en": {
+        "prompt": "PodDisruptionBudget primarily protects workloads against what type of disruption?",
+        "options": {
+          "a": "Voluntary disruption like drain node",
+          "b": "Any unexpected hardware failure",
+          "c": "Any code errors in the container",
+          "d": "Image registry is deleted"
+        },
+        "explanation": "PDB limits the number of Pods that can be voluntarily interrupted at the same time via the Eviction API. It does not prevent unintended node or application crashes.",
+        "tags": [
+          "Workloads & Scheduling 15%",
+          "PodDisruptionBudget",
+          "Availability"
+        ],
+        "sourceLabel": "Kubernetes: Specify a Disruption Budget"
+      },
+      "ja": {
+        "prompt": "PodDisruptionBudget は主にどのような種類の中断からワークロードを保護しますか?",
+        "options": {
+          "a": "排水ノードなどの自主的中断",
+          "b": "予期しないハードウェア障害",
+          "c": "コンテナ内のコードエラー",
+          "d": "イメージレジストリが削除されました"
+        },
+        "explanation": "PDB は、Eviction API を介して同時に自発的に中断できるPodの数を制限します。意図しないノードやアプリケーションのクラッシュを防ぐことはできません。",
+        "tags": [
+          "ワークロードとスケジュール 15%",
+          "Pod中断予算",
+          "可用性"
+        ],
+        "sourceLabel": "Kubernetes: 中断予算の指定"
+      }
+    },
+    "audit": {
+      "status": "verified",
+      "auditedAt": "2026-07-19",
+      "officialSources": [
+        "https://v1-35.docs.kubernetes.io/docs/tasks/run-application/configure-pdb/",
+        "https://github.com/cncf/curriculum/blob/master/CKA_Curriculum_v1.35.pdf"
+      ],
+      "note": "Reviewed against the Kubernetes v1.35 documentation and CKA v1.35 curriculum."
+    }
+  },
+  {
+    "id": "cka-startup-probe",
+    "type": "single",
+    "prompt": "Ứng dụng khởi động rất chậm nhưng sau đó ổn định. Probe nào giúp trì hoãn liveness/readiness cho đến khi startup hoàn tất?",
+    "options": [
+      {
+        "id": "a",
+        "label": "startupProbe"
+      },
+      {
+        "id": "b",
+        "label": "execLifecycleProbe"
+      },
+      {
+        "id": "c",
+        "label": "schedulerProbe"
+      },
+      {
+        "id": "d",
+        "label": "endpointProbe"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Khi startupProbe được cấu hình, liveness và readiness chưa bắt đầu cho tới khi startup thành công, tránh restart nhầm ứng dụng khởi động chậm.",
+    "tags": [
+      "Workloads & Scheduling 15%",
+      "Probe",
+      "Self-healing"
+    ],
+    "sourceLabel": "Kubernetes: Startup Probes",
+    "sourceUrl": "https://v1-35.docs.kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/",
+    "translations": {
+      "en": {
+        "prompt": "The application starts up very slowly but then stabilizes. Which probe helps delay liveness/readiness until the startup is complete?",
+        "options": {
+          "a": "startupProbe",
+          "b": "executeLifecycleProbe",
+          "c": "schedulerProbe",
+          "d": "endpointProbe"
+        },
+        "explanation": "When startupProbe is configured, liveness and readiness do not begin until startup is successful, avoiding mistakenly restarting slow-starting applications.",
+        "tags": [
+          "Workloads & Scheduling 15%",
+          "Probe",
+          "Self-healing"
+        ],
+        "sourceLabel": "Kubernetes: Startup Probes"
+      },
+      "ja": {
+        "prompt": "アプリケーションの起動は非常に遅いですが、その後安定します。起動が完了するまで活性化/準備完了を遅らせるのに役立つプローブはどれですか?",
+        "options": {
+          "a": "スタートアッププローブ",
+          "b": "ライフサイクルプローブの実行",
+          "c": "スケジューラープローブ",
+          "d": "エンドポイントプローブ"
+        },
+        "explanation": "startProbe が構成されている場合、起動が成功するまで活性化と準備が開始されないため、起動の遅いアプリケーションを誤って再起動することがなくなります。",
+        "tags": [
+          "ワークロードとスケジュール 15%",
+          "プローブ",
+          "自己修復"
+        ],
+        "sourceLabel": "Kubernetes: 起動プローブ"
+      }
+    },
+    "audit": {
+      "status": "verified",
+      "auditedAt": "2026-07-19",
+      "officialSources": [
+        "https://v1-35.docs.kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/",
+        "https://github.com/cncf/curriculum/blob/master/CKA_Curriculum_v1.35.pdf"
+      ],
+      "note": "Reviewed against the Kubernetes v1.35 documentation and CKA v1.35 curriculum."
+    }
+  },
+  {
+    "id": "cka-pvc-pending",
+    "type": "single",
+    "prompt": "PVC dùng StorageClass động nhưng vẫn Pending. Thông tin nào nên kiểm tra trước?",
+    "options": [
+      {
+        "id": "a",
+        "label": "Events của PVC và provisioner của StorageClass"
+      },
+      {
+        "id": "b",
+        "label": "Log của kube-proxy"
+      },
+      {
+        "id": "c",
+        "label": "Số replica của CoreDNS"
+      },
+      {
+        "id": "d",
+        "label": "Image pull policy của Pod"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Events của PVC thường cho biết provisioner, quota, topology hoặc access mode nào khiến volume chưa được cấp.",
+    "tags": [
+      "Storage 10%",
+      "PVC",
+      "StorageClass"
+    ],
+    "sourceLabel": "Kubernetes: Persistent Volumes",
+    "sourceUrl": "https://v1-35.docs.kubernetes.io/docs/concepts/storage/persistent-volumes/",
+    "translations": {
+      "en": {
+        "prompt": "PVC uses dynamic StorageClass but still Pending. What information should I check first?",
+        "options": {
+          "a": "Events of PVC and provisioner of StorageClass",
+          "b": "Log of kube-proxy",
+          "c": "CoreDNS replica number",
+          "d": "Image pull policy of Pod"
+        },
+        "explanation": "PVC events usually indicate which provisioner, quota, topology or access mode is causing the volume to not be allocated.",
+        "tags": [
+          "Storage 10%",
+          "PVC",
+          "StorageClass"
+        ],
+        "sourceLabel": "Kubernetes: Persistent Volumes"
+      },
+      "ja": {
+        "prompt": "PVC は動的 StorageClass を使用していますが、まだ保留中です。最初にどのような情報を確認すればよいですか?",
+        "options": {
+          "a": "PVC と StorageClass のプロビジョナーのイベント",
+          "b": "kube-proxyのログ",
+          "c": "CoreDNS レプリカ番号",
+          "d": "Podのイメージプルポリシー"
+        },
+        "explanation": "PVC イベントは通常、どのプロビジョナー、クォータ、トポロジ、またはアクセス モードがボリュームの割り当てを行わない原因となっているかを示します。",
+        "tags": [
+          "ストレージ 10%",
+          "PVC",
+          "ストレージクラス"
+        ],
+        "sourceLabel": "Kubernetes: 永続ボリューム"
+      }
+    },
+    "audit": {
+      "status": "verified",
+      "auditedAt": "2026-07-19",
+      "officialSources": [
+        "https://v1-35.docs.kubernetes.io/docs/concepts/storage/persistent-volumes/",
+        "https://github.com/cncf/curriculum/blob/master/CKA_Curriculum_v1.35.pdf"
+      ],
+      "note": "Reviewed against the Kubernetes v1.35 documentation and CKA v1.35 curriculum."
+    }
+  },
+  {
+    "id": "cka-pv-retain-policy",
+    "type": "single",
+    "prompt": "PV động có reclaim policy `Retain`. Khi PVC bị xóa, điều gì xảy ra với storage asset?",
+    "options": [
+      {
+        "id": "a",
+        "label": "Asset được giữ lại để quản trị viên thu hồi dữ liệu thủ công"
+      },
+      {
+        "id": "b",
+        "label": "Asset luôn bị xóa ngay lập tức"
+      },
+      {
+        "id": "c",
+        "label": "PV tự chuyển thành StorageClass"
+      },
+      {
+        "id": "d",
+        "label": "PVC tự được tạo lại trong namespace default"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "`Retain` giữ resource lưu trữ sau khi claim được xóa. PV chuyển trạng thái và cần quy trình thu hồi/xóa dữ liệu thủ công trước khi tái sử dụng.",
+    "tags": [
+      "Storage 10%",
+      "PV",
+      "Reclaim Policy"
+    ],
+    "sourceLabel": "Kubernetes: Reclaiming Persistent Volumes",
+    "sourceUrl": "https://v1-35.docs.kubernetes.io/docs/concepts/storage/persistent-volumes/#reclaiming",
+    "translations": {
+      "en": {
+        "prompt": "Dynamic PV has reclaim policy `Retain`. When PVC is deleted, what happens to storage assets?",
+        "options": {
+          "a": "Assets are retained for manual data retrieval by administrators",
+          "b": "Assets are always deleted immediately",
+          "c": "PV converts itself to StorageClass",
+          "d": "The PVC itself is recreated in the default namespace"
+        },
+        "explanation": "`Retain` keeps the resource stored after the claim is cleared. The PV changes state and requires a manual data recall/delete process before reuse.",
+        "tags": [
+          "Storage 10%",
+          "PV",
+          "Reclaim Policy"
+        ],
+        "sourceLabel": "Kubernetes: Reclaiming Persistent Volumes"
+      },
+      "ja": {
+        "prompt": "動的 PV には再利用ポリシー `Retain` があります。 PVC が削除されると、ストレージ資産はどうなりますか?",
+        "options": {
+          "a": "資産は管理者による手動データ取得のために保持されます。",
+          "b": "アセットは常にすぐに削除されます",
+          "c": "PV 自体が StorageClass に変換されます",
+          "d": "PVC 自体はデフォルトのNamespaceで再作成されます。"
+        },
+        "explanation": "`Retain` は、要求がクリアされた後もリソースを保存したままにします。 PV は状態を変更するため、再利用する前に手動でデータのリコール/削除プロセスを行う必要があります。",
+        "tags": [
+          "ストレージ 10%",
+          "PV",
+          "回収ポリシー"
+        ],
+        "sourceLabel": "Kubernetes: 永続ボリュームの再利用"
+      }
+    },
+    "audit": {
+      "status": "verified",
+      "auditedAt": "2026-07-19",
+      "officialSources": [
+        "https://v1-35.docs.kubernetes.io/docs/concepts/storage/persistent-volumes/#reclaiming",
+        "https://github.com/cncf/curriculum/blob/master/CKA_Curriculum_v1.35.pdf"
+      ],
+      "note": "Reviewed against the Kubernetes v1.35 documentation and CKA v1.35 curriculum."
+    }
+  },
+  {
+    "id": "cka-rwop-access-mode",
+    "type": "single",
+    "prompt": "Access mode nào đảm bảo volume chỉ được mount read-write bởi một Pod trong toàn cluster?",
+    "options": [
+      {
+        "id": "a",
+        "label": "ReadWriteOncePod (RWOP)"
+      },
+      {
+        "id": "b",
+        "label": "ReadWriteOnce (RWO)"
+      },
+      {
+        "id": "c",
+        "label": "ReadOnlyMany (ROX)"
+      },
+      {
+        "id": "d",
+        "label": "ReadWriteMany (RWX)"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "RWOP giới hạn một Pod. RWO giới hạn volume read-write trên một node và nhiều Pod trên cùng node vẫn có thể truy cập tùy driver.",
+    "tags": [
+      "Storage 10%",
+      "Access Mode",
+      "PVC"
+    ],
+    "sourceLabel": "Kubernetes: Volume Access Modes",
+    "sourceUrl": "https://v1-35.docs.kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes",
+    "translations": {
+      "en": {
+        "prompt": "Which access mode ensures that a volume can only be mounted read-write by one Pod in the entire cluster?",
+        "options": {
+          "a": "ReadWriteOncePod (RWOP)",
+          "b": "ReadWriteOnce (RWO)",
+          "c": "ReadOnlyMany (ROX)",
+          "d": "ReadWriteMany (RWX)"
+        },
+        "explanation": "RWOP is limited to one Pod. RWO limits the read-write volume on a node and multiple Pods on the same node can still access it depending on the driver.",
+        "tags": [
+          "Storage 10%",
+          "Access Mode",
+          "PVC"
+        ],
+        "sourceLabel": "Kubernetes: Volume Access Modes"
+      },
+      "ja": {
+        "prompt": "ボリュームがクラスター全体の 1 つのPodによってのみ読み取り/書き込み可能にマウントされることを保証するアクセス モードはどれですか?",
+        "options": {
+          "a": "リードライトワンスPod (RWOP)",
+          "b": "リードライトワンス (RWO)",
+          "c": "ReadOnlyMany (ROX)",
+          "d": "読み取り書き込み多 (RWX)"
+        },
+        "explanation": "RWOP は 1 つのPodに制限されます。 RWO はノード上の読み取り/書き込みボリュームを制限しますが、ドライバーによっては同じノード上の複数の Pod がアクセスできるようになります。",
+        "tags": [
+          "ストレージ 10%",
+          "アクセスモード",
+          "PVC"
+        ],
+        "sourceLabel": "Kubernetes: ボリューム アクセス モード"
+      }
+    },
+    "audit": {
+      "status": "verified",
+      "auditedAt": "2026-07-19",
+      "officialSources": [
+        "https://v1-35.docs.kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes",
+        "https://github.com/cncf/curriculum/blob/master/CKA_Curriculum_v1.35.pdf"
+      ],
+      "note": "Reviewed against the Kubernetes v1.35 documentation and CKA v1.35 curriculum."
+    }
+  },
+  {
+    "id": "cka-wait-for-first-consumer",
+    "type": "single",
+    "prompt": "StorageClass dùng `volumeBindingMode: WaitForFirstConsumer`. Việc bind/provision volume được trì hoãn tới khi nào?",
+    "options": [
+      {
+        "id": "a",
+        "label": "Khi có Pod dùng PVC và scheduler biết topology phù hợp"
+      },
+      {
+        "id": "b",
+        "label": "Khi cluster tạo Service LoadBalancer đầu tiên"
+      },
+      {
+        "id": "c",
+        "label": "Khi kubelet restart trên mọi node"
+      },
+      {
+        "id": "d",
+        "label": "Khi PVC bị xóa"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Chế độ này cho phép scheduler cân nhắc zone/node topology của Pod trước khi chọn hoặc provision volume, tránh tạo volume ở vị trí không thể schedule.",
+    "tags": [
+      "Storage 10%",
+      "StorageClass",
+      "Topology"
+    ],
+    "sourceLabel": "Kubernetes: Volume Binding Mode",
+    "sourceUrl": "https://v1-35.docs.kubernetes.io/docs/concepts/storage/storage-classes/#volume-binding-mode",
+    "translations": {
+      "en": {
+        "prompt": "StorageClass uses `volumeBindingMode: WaitForFirstConsumer`. How long is binding/provision volume delayed?",
+        "options": {
+          "a": "When there is a Pod, use PVC and the scheduler knows the appropriate topology",
+          "b": "When the cluster creates the first Service LoadBalancer",
+          "c": "When kubelet restarts on every node",
+          "d": "When the PVC is removed"
+        },
+        "explanation": "This mode allows the scheduler to consider the Pod's zone/node topology before selecting or provisioning volumes, avoiding creating volumes in locations that cannot be scheduled.",
+        "tags": [
+          "Storage 10%",
+          "StorageClass",
+          "Topology"
+        ],
+        "sourceLabel": "Kubernetes: Volume Binding Mode"
+      },
+      "ja": {
+        "prompt": "StorageClass は `volumeBindingMode: WaitForFirstConsumer` を使用します。バインディング/プロビジョニング ボリュームの遅延はどれくらいですか?",
+        "options": {
+          "a": "Podがある場合は PVC を使用し、スケジューラは適切なトポロジを認識します。",
+          "b": "クラスターが最初の Service LoadBalancer を作成するとき",
+          "c": "すべてのノードで kubelet が再起動されるとき",
+          "d": "PVCを剥がすと"
+        },
+        "explanation": "このモードを使用すると、スケジューラはボリュームを選択またはプロビジョニングする前にPodのゾーン/ノード トポロジを考慮できるため、スケジュールできない場所にボリュームが作成されることを回避できます。",
+        "tags": [
+          "ストレージ 10%",
+          "ストレージクラス",
+          "トポロジー"
+        ],
+        "sourceLabel": "Kubernetes: ボリューム バインディング モード"
+      }
+    },
+    "audit": {
+      "status": "verified",
+      "auditedAt": "2026-07-19",
+      "officialSources": [
+        "https://v1-35.docs.kubernetes.io/docs/concepts/storage/storage-classes/#volume-binding-mode",
+        "https://github.com/cncf/curriculum/blob/master/CKA_Curriculum_v1.35.pdf"
+      ],
+      "note": "Reviewed against the Kubernetes v1.35 documentation and CKA v1.35 curriculum."
+    }
+  }
+]
