@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "provider": "codex:gpt-5.6-sol:course-meaning-first-v1",
+  "providers": [
+    "codex:gpt-5.6-sol:course-meaning-first-v1"
+  ],
+  "tracks": {
+    "pmp-2026": 15,
+    "ccna-200-301": 63,
+    "cka": 26,
+    "aws-saa-c03": 56,
+    "aws-sap-c02": 64,
+    "claude-cca-f": 30
+  }
+}
